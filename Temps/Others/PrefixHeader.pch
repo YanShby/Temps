@@ -1,0 +1,41 @@
+//
+//  PrefixHeader.pch
+//  YanTemps
+//
+//  Created by Yans on 2016/11/30.
+//  Copyright © 2016年 Yans. All rights reserved.
+//
+
+#ifdef __OBJC__
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
+
+#import "YTSaveTool.h"
+
+#define YTBundle   [NSBundle mainBundle]
+#define YTScreenW  [UIScreen mainScreen].bounds.size.width
+#define YTScreenH  [UIScreen mainScreen].bounds.size.height
+#define YT_API_Key @"41e80f90800e40f69693679ba5be23ee"
+#define YTSaveLocations @"locations.plist"
+#define YTSaveWeathers @"weathers.plist"
+#define YTColor(R,G,B) [UIColor colorWithRed:R/255.0 green:G/255. blue:B/255.0 alpha:1];
+
+
+
+#pragma mark - 折叠cell 折叠前后的cell高度
+static const CGFloat YTCloseCellHeight  = 180;
+static const CGFloat YTOpenCellHeight  =  420;
+
+
+
+
+
+#ifdef DEBUG
+#define YTLog(...) NSLog(__VA_ARGS__)
+#else
+#define YTLog(...)
+#endif
+
+#endif

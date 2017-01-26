@@ -1,0 +1,564 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		25B585EF1E1F3F4200F06EAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25B585EE1E1F3F4200F06EAD /* Assets.xcassets */; };
+		25B585FF1E1F3F5D00F06EAD /* YTAddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B585FC1E1F3F5D00F06EAD /* YTAddLocationViewController.m */; };
+		25B586171E1F3F6400F06EAD /* YTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B586031E1F3F6400F06EAD /* YTMainViewController.m */; };
+		25B586181E1F3F6400F06EAD /* YTDataDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B586061E1F3F6400F06EAD /* YTDataDownloader.m */; };
+		25B586191E1F3F6400F06EAD /* YTForecastData.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B586081E1F3F6400F06EAD /* YTForecastData.m */; };
+		25B5861A1E1F3F6400F06EAD /* YTWeatherData.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B5860A1E1F3F6400F06EAD /* YTWeatherData.m */; };
+		25B5861B1E1F3F6400F06EAD /* YTBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B5860D1E1F3F6400F06EAD /* YTBackView.m */; };
+		25B5861C1E1F3F6400F06EAD /* YTBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25B5860E1E1F3F6400F06EAD /* YTBackView.xib */; };
+		25B5861D1E1F3F6400F06EAD /* YTFoldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B586101E1F3F6400F06EAD /* YTFoldTableViewCell.m */; };
+		25B5861E1E1F3F6400F06EAD /* YTFoldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25B586111E1F3F6400F06EAD /* YTFoldTableViewCell.xib */; };
+		25B5861F1E1F3F6400F06EAD /* YTForecastTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B586131E1F3F6400F06EAD /* YTForecastTableViewCell.m */; };
+		25B586201E1F3F6400F06EAD /* YTForecastTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25B586141E1F3F6400F06EAD /* YTForecastTableViewCell.xib */; };
+		25B586211E1F3F6400F06EAD /* YTRotatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B586161E1F3F6400F06EAD /* YTRotatedView.m */; };
+		25B586271E1F3F6900F06EAD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B586241E1F3F6900F06EAD /* AppDelegate.m */; };
+		25B586281E1F3F6900F06EAD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B586251E1F3F6900F06EAD /* main.m */; };
+		25B586401E1F3F8500F06EAD /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25B5863F1E1F3F8500F06EAD /* Info.plist */; };
+		25B586511E1F401700F06EAD /* DRNRealTimeBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B586461E1F401700F06EAD /* DRNRealTimeBlurView.m */; };
+		25B586521E1F401700F06EAD /* UIImage+BoxBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B586481E1F401700F06EAD /* UIImage+BoxBlur.m */; };
+		25B586561E1F401700F06EAD /* YTSaveTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B586501E1F401700F06EAD /* YTSaveTool.m */; };
+		25B5865A1E1F402600F06EAD /* Climacons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 25B586591E1F402600F06EAD /* Climacons.ttf */; };
+		25B5865D1E1F409C00F06EAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25B5865B1E1F409C00F06EAD /* LaunchScreen.storyboard */; };
+		25B5865E1E1F409C00F06EAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25B5865C1E1F409C00F06EAD /* Main.storyboard */; };
+		D64AE504C0971D153E624F41 /* libPods-Temps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E83FED4F7167ED2B71ACE5 /* libPods-Temps.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		19E83FED4F7167ED2B71ACE5 /* libPods-Temps.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Temps.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		25B585DF1E1F3F4200F06EAD /* Temps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Temps.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		25B585EE1E1F3F4200F06EAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		25B585FB1E1F3F5D00F06EAD /* YTAddLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTAddLocationViewController.h; sourceTree = "<group>"; };
+		25B585FC1E1F3F5D00F06EAD /* YTAddLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTAddLocationViewController.m; sourceTree = "<group>"; };
+		25B586021E1F3F6400F06EAD /* YTMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTMainViewController.h; sourceTree = "<group>"; };
+		25B586031E1F3F6400F06EAD /* YTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTMainViewController.m; sourceTree = "<group>"; };
+		25B586051E1F3F6400F06EAD /* YTDataDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YTDataDownloader.h; path = "../Main(主视图)/Model/YTDataDownloader.h"; sourceTree = "<group>"; };
+		25B586061E1F3F6400F06EAD /* YTDataDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YTDataDownloader.m; path = "../Main(主视图)/Model/YTDataDownloader.m"; sourceTree = "<group>"; };
+		25B586071E1F3F6400F06EAD /* YTForecastData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTForecastData.h; sourceTree = "<group>"; };
+		25B586081E1F3F6400F06EAD /* YTForecastData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTForecastData.m; sourceTree = "<group>"; };
+		25B586091E1F3F6400F06EAD /* YTWeatherData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTWeatherData.h; sourceTree = "<group>"; };
+		25B5860A1E1F3F6400F06EAD /* YTWeatherData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTWeatherData.m; sourceTree = "<group>"; };
+		25B5860C1E1F3F6400F06EAD /* YTBackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTBackView.h; sourceTree = "<group>"; };
+		25B5860D1E1F3F6400F06EAD /* YTBackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTBackView.m; sourceTree = "<group>"; };
+		25B5860E1E1F3F6400F06EAD /* YTBackView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YTBackView.xib; sourceTree = "<group>"; };
+		25B5860F1E1F3F6400F06EAD /* YTFoldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTFoldTableViewCell.h; sourceTree = "<group>"; };
+		25B586101E1F3F6400F06EAD /* YTFoldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTFoldTableViewCell.m; sourceTree = "<group>"; };
+		25B586111E1F3F6400F06EAD /* YTFoldTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YTFoldTableViewCell.xib; sourceTree = "<group>"; };
+		25B586121E1F3F6400F06EAD /* YTForecastTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTForecastTableViewCell.h; sourceTree = "<group>"; };
+		25B586131E1F3F6400F06EAD /* YTForecastTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTForecastTableViewCell.m; sourceTree = "<group>"; };
+		25B586141E1F3F6400F06EAD /* YTForecastTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YTForecastTableViewCell.xib; sourceTree = "<group>"; };
+		25B586151E1F3F6400F06EAD /* YTRotatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTRotatedView.h; sourceTree = "<group>"; };
+		25B586161E1F3F6400F06EAD /* YTRotatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTRotatedView.m; sourceTree = "<group>"; };
+		25B586231E1F3F6900F06EAD /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		25B586241E1F3F6900F06EAD /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		25B586251E1F3F6900F06EAD /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		25B586261E1F3F6900F06EAD /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		25B5863F1E1F3F8500F06EAD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		25B586451E1F401700F06EAD /* DRNRealTimeBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRNRealTimeBlurView.h; sourceTree = "<group>"; };
+		25B586461E1F401700F06EAD /* DRNRealTimeBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRNRealTimeBlurView.m; sourceTree = "<group>"; };
+		25B586471E1F401700F06EAD /* UIImage+BoxBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BoxBlur.h"; sourceTree = "<group>"; };
+		25B586481E1F401700F06EAD /* UIImage+BoxBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BoxBlur.m"; sourceTree = "<group>"; };
+		25B5864F1E1F401700F06EAD /* YTSaveTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTSaveTool.h; sourceTree = "<group>"; };
+		25B586501E1F401700F06EAD /* YTSaveTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTSaveTool.m; sourceTree = "<group>"; };
+		25B586581E1F402600F06EAD /* Climacons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Climacons.h; sourceTree = "<group>"; };
+		25B586591E1F402600F06EAD /* Climacons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Climacons.ttf; sourceTree = "<group>"; };
+		25B5865B1E1F409C00F06EAD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		25B5865C1E1F409C00F06EAD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		36EEB4C9DB89EDB7A425CFA0 /* Pods-Temps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Temps.release.xcconfig"; path = "Pods/Target Support Files/Pods-Temps/Pods-Temps.release.xcconfig"; sourceTree = "<group>"; };
+		FA8BAD4FE15224839FA3D8B0 /* Pods-Temps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Temps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Temps/Pods-Temps.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		25B585DC1E1F3F4200F06EAD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D64AE504C0971D153E624F41 /* libPods-Temps.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		25B585D61E1F3F4200F06EAD = {
+			isa = PBXGroup;
+			children = (
+				25B585E11E1F3F4200F06EAD /* Temps */,
+				25B585E01E1F3F4200F06EAD /* Products */,
+				6625678EC0021A931F5C1B2F /* Pods */,
+				926AF90926EBBB6A4F668DC3 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		25B585E01E1F3F4200F06EAD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				25B585DF1E1F3F4200F06EAD /* Temps.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		25B585E11E1F3F4200F06EAD /* Temps */ = {
+			isa = PBXGroup;
+			children = (
+				25B586001E1F3F6400F06EAD /* Main(主视图) */,
+				25B585F91E1F3F5D00F06EAD /* AddLocation(添加) */,
+				25B586221E1F3F6900F06EAD /* Others */,
+				25B586411E1F401700F06EAD /* Tools */,
+				25B586571E1F402600F06EAD /* Font(天气字体) */,
+				25B585E21E1F3F4200F06EAD /* Supporting Files */,
+			);
+			path = Temps;
+			sourceTree = "<group>";
+		};
+		25B585E21E1F3F4200F06EAD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				25B5865B1E1F409C00F06EAD /* LaunchScreen.storyboard */,
+				25B5865C1E1F409C00F06EAD /* Main.storyboard */,
+				25B5863F1E1F3F8500F06EAD /* Info.plist */,
+				25B585EE1E1F3F4200F06EAD /* Assets.xcassets */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		25B585F91E1F3F5D00F06EAD /* AddLocation(添加) */ = {
+			isa = PBXGroup;
+			children = (
+				25B585FA1E1F3F5D00F06EAD /* Controller */,
+				25B585FD1E1F3F5D00F06EAD /* Model */,
+				25B585FE1E1F3F5D00F06EAD /* View */,
+			);
+			path = "AddLocation(添加)";
+			sourceTree = "<group>";
+		};
+		25B585FA1E1F3F5D00F06EAD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				25B585FB1E1F3F5D00F06EAD /* YTAddLocationViewController.h */,
+				25B585FC1E1F3F5D00F06EAD /* YTAddLocationViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		25B585FD1E1F3F5D00F06EAD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		25B585FE1E1F3F5D00F06EAD /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		25B586001E1F3F6400F06EAD /* Main(主视图) */ = {
+			isa = PBXGroup;
+			children = (
+				25B586011E1F3F6400F06EAD /* Controller */,
+				25B586041E1F3F6400F06EAD /* Model */,
+				25B5860B1E1F3F6400F06EAD /* View */,
+			);
+			path = "Main(主视图)";
+			sourceTree = "<group>";
+		};
+		25B586011E1F3F6400F06EAD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				25B586021E1F3F6400F06EAD /* YTMainViewController.h */,
+				25B586031E1F3F6400F06EAD /* YTMainViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		25B586041E1F3F6400F06EAD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				25B586071E1F3F6400F06EAD /* YTForecastData.h */,
+				25B586081E1F3F6400F06EAD /* YTForecastData.m */,
+				25B586091E1F3F6400F06EAD /* YTWeatherData.h */,
+				25B5860A1E1F3F6400F06EAD /* YTWeatherData.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		25B5860B1E1F3F6400F06EAD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25B5860C1E1F3F6400F06EAD /* YTBackView.h */,
+				25B5860D1E1F3F6400F06EAD /* YTBackView.m */,
+				25B5860E1E1F3F6400F06EAD /* YTBackView.xib */,
+				25B5860F1E1F3F6400F06EAD /* YTFoldTableViewCell.h */,
+				25B586101E1F3F6400F06EAD /* YTFoldTableViewCell.m */,
+				25B586111E1F3F6400F06EAD /* YTFoldTableViewCell.xib */,
+				25B586121E1F3F6400F06EAD /* YTForecastTableViewCell.h */,
+				25B586131E1F3F6400F06EAD /* YTForecastTableViewCell.m */,
+				25B586141E1F3F6400F06EAD /* YTForecastTableViewCell.xib */,
+				25B586151E1F3F6400F06EAD /* YTRotatedView.h */,
+				25B586161E1F3F6400F06EAD /* YTRotatedView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		25B586221E1F3F6900F06EAD /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				25B586231E1F3F6900F06EAD /* AppDelegate.h */,
+				25B586241E1F3F6900F06EAD /* AppDelegate.m */,
+				25B586251E1F3F6900F06EAD /* main.m */,
+				25B586261E1F3F6900F06EAD /* PrefixHeader.pch */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
+		25B586411E1F401700F06EAD /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				25B586441E1F401700F06EAD /* DRNRealTimeBlurView */,
+				25B5864F1E1F401700F06EAD /* YTSaveTool.h */,
+				25B586501E1F401700F06EAD /* YTSaveTool.m */,
+				25B586051E1F3F6400F06EAD /* YTDataDownloader.h */,
+				25B586061E1F3F6400F06EAD /* YTDataDownloader.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		25B586441E1F401700F06EAD /* DRNRealTimeBlurView */ = {
+			isa = PBXGroup;
+			children = (
+				25B586451E1F401700F06EAD /* DRNRealTimeBlurView.h */,
+				25B586461E1F401700F06EAD /* DRNRealTimeBlurView.m */,
+				25B586471E1F401700F06EAD /* UIImage+BoxBlur.h */,
+				25B586481E1F401700F06EAD /* UIImage+BoxBlur.m */,
+			);
+			path = DRNRealTimeBlurView;
+			sourceTree = "<group>";
+		};
+		25B586571E1F402600F06EAD /* Font(天气字体) */ = {
+			isa = PBXGroup;
+			children = (
+				25B586581E1F402600F06EAD /* Climacons.h */,
+				25B586591E1F402600F06EAD /* Climacons.ttf */,
+			);
+			path = "Font(天气字体)";
+			sourceTree = "<group>";
+		};
+		6625678EC0021A931F5C1B2F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FA8BAD4FE15224839FA3D8B0 /* Pods-Temps.debug.xcconfig */,
+				36EEB4C9DB89EDB7A425CFA0 /* Pods-Temps.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		926AF90926EBBB6A4F668DC3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				19E83FED4F7167ED2B71ACE5 /* libPods-Temps.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		25B585DE1E1F3F4200F06EAD /* Temps */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 25B585F61E1F3F4200F06EAD /* Build configuration list for PBXNativeTarget "Temps" */;
+			buildPhases = (
+				AE047D752D5A635B1AA978C1 /* [CP] Check Pods Manifest.lock */,
+				25B585DB1E1F3F4200F06EAD /* Sources */,
+				25B585DC1E1F3F4200F06EAD /* Frameworks */,
+				25B585DD1E1F3F4200F06EAD /* Resources */,
+				D0BE5A15B8B6685008A51F52 /* [CP] Embed Pods Frameworks */,
+				FE39088D15EC4B838C46083A /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Temps;
+			productName = Temps;
+			productReference = 25B585DF1E1F3F4200F06EAD /* Temps.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		25B585D71E1F3F4200F06EAD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Ewane Shen";
+				TargetAttributes = {
+					25B585DE1E1F3F4200F06EAD = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = UTSJXW72F3;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 25B585DA1E1F3F4200F06EAD /* Build configuration list for PBXProject "Temps" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 25B585D61E1F3F4200F06EAD;
+			productRefGroup = 25B585E01E1F3F4200F06EAD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				25B585DE1E1F3F4200F06EAD /* Temps */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		25B585DD1E1F3F4200F06EAD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25B5861E1E1F3F6400F06EAD /* YTFoldTableViewCell.xib in Resources */,
+				25B5865D1E1F409C00F06EAD /* LaunchScreen.storyboard in Resources */,
+				25B5865A1E1F402600F06EAD /* Climacons.ttf in Resources */,
+				25B5861C1E1F3F6400F06EAD /* YTBackView.xib in Resources */,
+				25B586401E1F3F8500F06EAD /* Info.plist in Resources */,
+				25B585EF1E1F3F4200F06EAD /* Assets.xcassets in Resources */,
+				25B5865E1E1F409C00F06EAD /* Main.storyboard in Resources */,
+				25B586201E1F3F6400F06EAD /* YTForecastTableViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AE047D752D5A635B1AA978C1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D0BE5A15B8B6685008A51F52 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Temps/Pods-Temps-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FE39088D15EC4B838C46083A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Temps/Pods-Temps-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		25B585DB1E1F3F4200F06EAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25B586561E1F401700F06EAD /* YTSaveTool.m in Sources */,
+				25B586271E1F3F6900F06EAD /* AppDelegate.m in Sources */,
+				25B5861F1E1F3F6400F06EAD /* YTForecastTableViewCell.m in Sources */,
+				25B5861B1E1F3F6400F06EAD /* YTBackView.m in Sources */,
+				25B585FF1E1F3F5D00F06EAD /* YTAddLocationViewController.m in Sources */,
+				25B586211E1F3F6400F06EAD /* YTRotatedView.m in Sources */,
+				25B586191E1F3F6400F06EAD /* YTForecastData.m in Sources */,
+				25B586171E1F3F6400F06EAD /* YTMainViewController.m in Sources */,
+				25B5861D1E1F3F6400F06EAD /* YTFoldTableViewCell.m in Sources */,
+				25B586181E1F3F6400F06EAD /* YTDataDownloader.m in Sources */,
+				25B586521E1F401700F06EAD /* UIImage+BoxBlur.m in Sources */,
+				25B586281E1F3F6900F06EAD /* main.m in Sources */,
+				25B5861A1E1F3F6400F06EAD /* YTWeatherData.m in Sources */,
+				25B586511E1F401700F06EAD /* DRNRealTimeBlurView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		25B585F41E1F3F4200F06EAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		25B585F51E1F3F4200F06EAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		25B585F71E1F3F4200F06EAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA8BAD4FE15224839FA3D8B0 /* Pods-Temps.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = UTSJXW72F3;
+				GCC_PREFIX_HEADER = Temps/Others/PrefixHeader.pch;
+				INFOPLIST_FILE = Temps/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.EwaneShen.Temps;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		25B585F81E1F3F4200F06EAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36EEB4C9DB89EDB7A425CFA0 /* Pods-Temps.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = UTSJXW72F3;
+				GCC_PREFIX_HEADER = Temps/Others/PrefixHeader.pch;
+				INFOPLIST_FILE = Temps/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.EwaneShen.Temps;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		25B585DA1E1F3F4200F06EAD /* Build configuration list for PBXProject "Temps" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				25B585F41E1F3F4200F06EAD /* Debug */,
+				25B585F51E1F3F4200F06EAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		25B585F61E1F3F4200F06EAD /* Build configuration list for PBXNativeTarget "Temps" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				25B585F71E1F3F4200F06EAD /* Debug */,
+				25B585F81E1F3F4200F06EAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 25B585D71E1F3F4200F06EAD /* Project object */;
+}

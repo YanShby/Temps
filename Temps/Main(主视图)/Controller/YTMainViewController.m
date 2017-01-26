@@ -1,0 +1,363 @@
+//
+//  ViewController.m
+//  YanTemps
+//
+//  Created by Yans on 2016/11/30.
+//  Copyright © 2016年 Yans. All rights reserved.
+//
+
+#import "YTMainViewController.h"
+#import "YTAddLocationViewController.h"
+
+
+#import "YTFoldTableViewCell.h"
+#import "YTDataDownloader.h"
+#import "YTWeatherData.h"
+#import "YTBackView.h"
+
+#import <SVProgressHUD.h>
+
+@interface YTMainViewController() <UITableViewDelegate, UITableViewDataSource, YTAddLocationViewControllerDelegate>
+
+/**添加地区控制器*/
+@property (nonatomic, strong) YTAddLocationViewController *addLocationVC;
+/**高度*/
+@property (nonatomic, strong) NSMutableArray *heightArray;
+/**主页面的tableView*/
+@property (weak, nonatomic) IBOutlet UITableView *rotateTableView;
+/**背景View*/
+@property (nonatomic, strong) YTBackView *backView;
+/**获取本地地点*/
+@property (nonatomic, readwrite) CLLocationManager   *locationManager;
+/**存放YTWeatherData数据*/
+@property (nonatomic, strong) NSMutableArray *weathers;
+
+
+@end
+
+@implementation YTMainViewController
+
+#pragma mark - 懒加载
+- (NSMutableArray *)heightArray {
+    
+    if (_heightArray == nil) {
+        
+        _heightArray = [NSMutableArray array];
+        
+        for (NSUInteger i = 0 ; i <= _weathers.count + 1; i++) {
+            
+            [_heightArray addObject:[NSNumber numberWithFloat:YTCloseCellHeight]];
+        }
+        
+    }
+    
+    return _heightArray;
+}
+
+- (NSMutableArray *)weathers {
+    
+    if (_weathers == nil) {
+        _weathers = (NSMutableArray *)[YTSaveTool unarchiveObjectWithFile:YTSaveWeathers];
+
+        if (_weathers == nil) {
+            _weathers = [NSMutableArray array];
+            [self initBackView];
+        }
+    }
+    
+    [self heightArray];
+   
+    return _weathers;
+}
+
+#pragma mark - view的生命周期
+- (void)viewDidLoad {
+   
+    [super viewDidLoad];
+    
+    if (self.weathers.count == 0) {
+        [self initLocation];
+    }
+    
+    [self initRotateTableView];
+    
+    _addLocationVC = [[YTAddLocationViewController alloc] init];
+    _addLocationVC.delegate = self;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    [self updateData];
+}
+
+#pragma mark - 初始化
+//定位初始化
+- (void)initLocation {
+    
+    self.locationManager                 = [[CLLocationManager alloc] init];
+    self.locationManager.delegate        = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
+
+    if ([UIDevice currentDevice].systemVersion.doubleValue >= 8.0) {
+
+        //请求用户授权--> 当用户在使用的时候授权, 还需要增加info.plist的一个key
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+
+    [self.locationManager startUpdatingLocation];
+}
+
+//初始化RotateTableView
+- (void)initRotateTableView {
+    
+    self.rotateTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    [self.rotateTableView registerNib:[UINib nibWithNibName:NSStringFromClass([YTFoldTableViewCell class]) bundle:nil] forCellReuseIdentifier:@"cell"];
+    
+}
+
+//初始化BackView
+- (void)initBackView {
+    
+    if (_weathers.count == 0) {
+        _backView = [YTBackView backView];
+        [self.view insertSubview:_backView atIndex:1];
+    }
+}
+
+#pragma mark - tableViewDataSource 和 tableViewDelegate
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return _weathers.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return [_heightArray[indexPath.row] floatValue];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    YTFoldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
+    /**
+     * 把数组个数作为绑定数据的tag是不是不好?
+     * 在多数据下 如果删除中间的一个, 后面的数据会收到影响
+     * 错误所在就在 [_weatherInfo objectForKey:[NSNumber numberWithInteger:indexPath.row]];
+     * 假如现在有三个数据tag为0 1 2
+     * 现在要删除1号数据 刷新数据源
+     * 那么原本的2号变到了第1行, 它会取1号数据 然而1号数据已经被删除 最终导致空数据.
+     */
+    
+    YTWeatherData *data = [_weathers objectAtIndex:indexPath.row];
+    
+    cell.weatherData = data;
+    
+    if ([_heightArray[indexPath.row] floatValue] == YTCloseCellHeight) {
+        
+        [cell selectedAnimation:NO animated:NO completion:nil];
+    }else {
+        
+        [cell selectedAnimation:YES animated:NO completion:nil];
+    }
+
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    YTFoldTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    //cell正在动画中不能操作
+    if([cell isAnimating]) return;
+    
+    CGFloat durtion = 0.0;
+   
+    if([_heightArray[indexPath.row] floatValue] == YTCloseCellHeight) {
+       
+        [_heightArray replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithFloat:YTOpenCellHeight]];
+       
+        durtion = 0.3;
+       
+        [cell selectedAnimation:YES animated:YES completion:nil];
+        
+    }else {
+       
+        durtion = [cell returnSumTime];
+       
+        [_heightArray replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithFloat:YTCloseCellHeight]];
+       
+        [cell selectedAnimation:NO animated:YES completion:nil];
+    }
+    
+    [UIView animateWithDuration:durtion + 0.3 animations:^{
+       
+        [self.rotateTableView beginUpdates];
+        [self.rotateTableView endUpdates];
+    }];
+    
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    return indexPath.row == 0 ? UITableViewCellEditingStyleNone : UITableViewCellEditingStyleDelete;
+}
+
+// 自定义左滑显示编辑按钮
+-(NSArray<UITableViewRowAction*>*)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault
+                                                                         title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+                                                                             
+                                                                             [_weathers removeObjectAtIndex:indexPath.row];
+                           
+                                                                             [YTSaveTool archiveRootObject:_weathers toFile:YTSaveWeathers];
+                                                                             
+                                                                             [self.rotateTableView reloadData];
+                                                                            
+                                                                         }];
+    delete.backgroundColor = [UIColor clearColor];
+
+    
+    return @[delete];
+}
+
+#pragma mark - 获取数据
+/**
+ *  更新天气数据
+ *  根据weathers数组中的天气数据对象的属性local来获得CLLocation对象，然后根据这个location更新数据
+ */
+- (void)updateData {
+
+    for (int i = 0 ; i < self.weathers.count; i++) {
+        CLLocation *location = [(YTWeatherData *)self.weathers[i] local];
+        YTLog(@"%@",_weathers);
+        [self updateWeatherData:location atIndex:i];
+    }
+}
+
+/**
+ *  更新界面上对应位置的数据
+ *
+ *  @param location 地点对象
+ *  @param index    weathers数组中对应的位置，每个位置都有一个天气数据对象
+ */
+- (void)updateWeatherData:(CLLocation *)location atIndex:(NSInteger)index {
+
+    [SVProgressHUD showWithStatus:@"正在更新天气数据"];
+    
+    [[YTDataDownloader sharedDownloader] dataForLocation:location  completion:^(YTWeatherData *data, NSError *error) {
+
+        if (error && !data) {
+            
+            [self downloadFailed];
+            
+        } else {
+            
+            [self downloadSuccessForData:data atIndex:index];
+        }
+        
+    }];
+    
+}
+
+/**
+ *  根据相应位置来获得新数据，替换原来的旧数据
+ *
+ *  @param data  更新之后的天气数据
+ *  @param index 该地点在weathers数组中的位置
+ */
+- (void)downloadSuccessForData:(YTWeatherData *)data atIndex:(NSInteger)index {
+   
+    [SVProgressHUD showSuccessWithStatus:nil];
+   
+    [_weathers replaceObjectAtIndex:index withObject:data];
+    
+    [YTSaveTool archiveRootObject:_weathers toFile:YTSaveWeathers];
+    
+    [self.rotateTableView reloadData];
+    
+}
+
+
+/**
+ *  获取数据失败
+ */
+- (void)downloadFailed {
+    
+    [SVProgressHUD showErrorWithStatus:@"更新数据失败"];
+}
+
+/**
+ *  获取本地数据
+ *
+ *  @param location 定位的本地location
+ */
+- (void)acquireDataWithLocation:(CLLocation *)location {
+    
+    [SVProgressHUD showWithStatus:@"正在获取天气数据"];
+    
+    [[YTDataDownloader sharedDownloader] dataForLocation:location  completion:^(YTWeatherData *data, NSError *error) {
+        if (error && !data) {
+            
+            [self downloadFailed];
+            
+        } else {
+
+            [SVProgressHUD showSuccessWithStatus:@"获取数据成功"];
+            
+            [_weathers addObject:data];
+            
+            if (_backView != nil) {
+                [_backView removeFromSuperview];
+            }
+            
+            [self.rotateTableView reloadData];
+            
+            [YTSaveTool archiveRootObject:_weathers toFile:YTSaveWeathers];
+        }
+    }];
+
+
+}
+
+
+#pragma mark - <CLLocationManagerDelegate>
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    
+    [self.locationManager stopUpdatingLocation];
+   
+    [self acquireDataWithLocation:[locations lastObject]];
+
+
+}
+
+#pragma mark - 按钮点击事件
+//弹出增添地区天气的view
+- (IBAction)tap:(id)sender {
+
+    [self.view addSubview:_addLocationVC.view];
+    
+    CATransition *animation = [CATransition animation];
+    animation.type = @"fade";
+    animation.duration = 0.4;
+    
+    [self.view.layer addAnimation:animation forKey:nil];
+    
+}
+
+#pragma mark - <YTAddLocationViewControllerDelegate>
+-(void)addLocaionVC:(YTAddLocationViewController *)viewController didClickCellWithPlacemark:(CLPlacemark *)placemark {
+
+    CLLocation *location = placemark.location;
+ 
+    [self acquireDataWithLocation:location];
+    
+    [_heightArray addObject:[NSNumber numberWithFloat:YTCloseCellHeight]];
+}
+
+@end
