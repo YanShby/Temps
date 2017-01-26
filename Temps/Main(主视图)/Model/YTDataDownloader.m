@@ -9,7 +9,7 @@
 #import "YTDataDownloader.h"
 #import "YTWeatherData.h"
 #import "Climacons.h"
-
+#import <SVProgressHUD.h>
 
 @interface YTDataDownloader ()
 
@@ -57,11 +57,17 @@
  *  根据获得的CLLocation地点对象发送请求获得数据
  *
  *  @param location   地点对象
+ *  @param showStatus 显示加载时的提示信息
+ *  @param showDone   加载结束时的提示信息
  *  @param completion 一个Block回调，接收请求传回来的数据及错误
  */
-- (void)dataForLocation:(CLLocation *)location completion:(YTWeatherDataDownloadCompletion)completion {
+
+
+- (void)dataForLocation:(CLLocation *)location showStatus:(NSString *)showStatus showDone:(NSString *)showDone completion:(YTWeatherDataDownloadCompletion)completion {
  
     if (!location) return;
+    
+    [SVProgressHUD showWithStatus:showStatus];
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
@@ -70,23 +76,19 @@
     NSURLRequest *request = [self urlRequestForLocation:location];
     
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        
+
         if (error) {
             completion(nil,error);
         } else {
             
             NSDictionary *JSON = [self serializedData:data];
             YTWeatherData *weatherData = [self dataFormJSON:JSON];
-            weatherData.local = location;
-
-            [self.geocoder reverseGeocodeLocation:location completionHandler: ^ (NSArray *placemarks, NSError *error) {
-                if(placemarks) {
-                    completion(weatherData, error);
-
-                } else if(error) {
-                    completion(nil, error);
-                }
-            }];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(weatherData,error);
+                [SVProgressHUD showSuccessWithStatus:showDone];
+            });
+            
         }
         
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
