@@ -31,8 +31,10 @@
 @property (nonatomic, readwrite) CLLocationManager   *locationManager;
 /**存放YTWeatherData数据*/
 @property (nonatomic, strong) NSMutableArray *weathers;
-
-
+/**存放CLLocation数据*/
+@property (nonatomic, strong) NSMutableArray *locations;
+/**防止调用定位方法*/
+@property (nonatomic, assign) BOOL isCall;
 @end
 
 @implementation YTMainViewController
@@ -57,27 +59,41 @@
 - (NSMutableArray *)weathers {
     
     if (_weathers == nil) {
-        _weathers = (NSMutableArray *)[YTSaveTool unarchiveObjectWithFile:YTSaveWeathers];
+        _weathers = [NSMutableArray array];
+    }
+    return _weathers;
+}
 
-        if (_weathers == nil) {
-            _weathers = [NSMutableArray array];
+- (NSMutableArray *)locations {
+    
+    if (_locations == nil) {
+        _locations = (NSMutableArray *)[YTSaveTool unarchiveObjectWithFile:YTSaveLocations];
+
+        if (_locations == nil) {
+            _locations = [NSMutableArray array];
             [self initBackView];
         }
+        
+        YTWeatherData *data = [[YTWeatherData alloc] init];
+        for (int i = 0; i < _locations.count; i++) {
+            [self.weathers addObject:data];
+        }
+        
     }
-    
     [self heightArray];
-   
-    return _weathers;
+    
+    return _locations;
 }
 
 #pragma mark - view的生命周期
 - (void)viewDidLoad {
    
     [super viewDidLoad];
-    
-    if (self.weathers.count == 0) {
+   
+    if (self.locations.count == 0) {
         [self initLocation];
     }
+
     
     [self initRotateTableView];
     
@@ -98,7 +114,7 @@
     self.locationManager                 = [[CLLocationManager alloc] init];
     self.locationManager.delegate        = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
-
+    self.isCall                          = NO;
     if ([UIDevice currentDevice].systemVersion.doubleValue >= 8.0) {
 
         //请求用户授权--> 当用户在使用的时候授权, 还需要增加info.plist的一个key
@@ -120,7 +136,7 @@
 //初始化BackView
 - (void)initBackView {
     
-    if (_weathers.count == 0) {
+    if (_locations.count == 0) {
         _backView = [YTBackView backView];
         [self.view insertSubview:_backView atIndex:1];
     }
@@ -129,7 +145,7 @@
 #pragma mark - tableViewDataSource 和 tableViewDelegate
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return _weathers.count;
+    return _locations.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -140,20 +156,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     YTFoldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
-    /**
-     * 把数组个数作为绑定数据的tag是不是不好?
-     * 在多数据下 如果删除中间的一个, 后面的数据会收到影响
-     * 错误所在就在 [_weatherInfo objectForKey:[NSNumber numberWithInteger:indexPath.row]];
-     * 假如现在有三个数据tag为0 1 2
-     * 现在要删除1号数据 刷新数据源
-     * 那么原本的2号变到了第1行, 它会取1号数据 然而1号数据已经被删除 最终导致空数据.
-     */
-    
+
     YTWeatherData *data = [_weathers objectAtIndex:indexPath.row];
     
     cell.weatherData = data;
-    
+
     if ([_heightArray[indexPath.row] floatValue] == YTCloseCellHeight) {
         
         [cell selectedAnimation:NO animated:NO completion:nil];
@@ -232,12 +239,14 @@
  *  根据weathers数组中的天气数据对象的属性local来获得CLLocation对象，然后根据这个location更新数据
  */
 - (void)updateData {
-
-    for (int i = 0 ; i < self.weathers.count; i++) {
-        CLLocation *location = [(YTWeatherData *)self.weathers[i] local];
-        YTLog(@"%@",_weathers);
+    
+    
+    for (int i = 0 ; i < _locations.count; i++) {
+        CLLocation *location = _locations[i];
+        
         [self updateWeatherData:location atIndex:i];
     }
+
 }
 
 /**
@@ -248,9 +257,8 @@
  */
 - (void)updateWeatherData:(CLLocation *)location atIndex:(NSInteger)index {
 
-    [SVProgressHUD showWithStatus:@"正在更新天气数据"];
     
-    [[YTDataDownloader sharedDownloader] dataForLocation:location  completion:^(YTWeatherData *data, NSError *error) {
+    [[YTDataDownloader sharedDownloader] dataForLocation:location showStatus:@"正在更新数据" showDone:nil completion:^(YTWeatherData *data, NSError *error) {
 
         if (error && !data) {
             
@@ -259,10 +267,11 @@
         } else {
             
             [self downloadSuccessForData:data atIndex:index];
+            
         }
         
     }];
-    
+
 }
 
 /**
@@ -272,13 +281,8 @@
  *  @param index 该地点在weathers数组中的位置
  */
 - (void)downloadSuccessForData:(YTWeatherData *)data atIndex:(NSInteger)index {
-   
-    [SVProgressHUD showSuccessWithStatus:nil];
-   
+
     [_weathers replaceObjectAtIndex:index withObject:data];
-    
-    [YTSaveTool archiveRootObject:_weathers toFile:YTSaveWeathers];
-    
     [self.rotateTableView reloadData];
     
 }
@@ -299,18 +303,16 @@
  */
 - (void)acquireDataWithLocation:(CLLocation *)location {
     
-    [SVProgressHUD showWithStatus:@"正在获取天气数据"];
-    
-    [[YTDataDownloader sharedDownloader] dataForLocation:location  completion:^(YTWeatherData *data, NSError *error) {
+  
+    [[YTDataDownloader sharedDownloader] dataForLocation:location showStatus:@"正在获取本地数据" showDone:nil completion:^(YTWeatherData *data, NSError *error) {
         if (error && !data) {
             
             [self downloadFailed];
             
         } else {
 
-            [SVProgressHUD showSuccessWithStatus:@"获取数据成功"];
-            
-            [_weathers addObject:data];
+            [self.weathers addObject:data];
+            [_locations addObject:location];
             
             if (_backView != nil) {
                 [_backView removeFromSuperview];
@@ -318,7 +320,7 @@
             
             [self.rotateTableView reloadData];
             
-            [YTSaveTool archiveRootObject:_weathers toFile:YTSaveWeathers];
+            [YTSaveTool archiveRootObject:_locations toFile:YTSaveLocations];
         }
     }];
 
@@ -329,11 +331,13 @@
 #pragma mark - <CLLocationManagerDelegate>
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     
+    if (self.isCall) return;
+    
     [self.locationManager stopUpdatingLocation];
    
     [self acquireDataWithLocation:[locations lastObject]];
 
-
+    self.isCall = YES;
 }
 
 #pragma mark - 按钮点击事件
