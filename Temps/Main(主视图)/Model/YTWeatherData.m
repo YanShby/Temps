@@ -21,8 +21,6 @@
     self.sunrise         = [dict objectForKey:@"sunrise"];
     self.icon            = [dict objectForKey:@"icon"];
     self.forecastWeather = [dict objectForKey:@"forecastWeather"];
-    self.local           = [dict objectForKey:@"local"];
-
 
     return self;
 }
@@ -39,7 +37,7 @@
     self.sunrise         = [aDecoder decodeObjectForKey:@"sunrise"];
     self.icon            = [aDecoder decodeObjectForKey:@"icon"];
     self.forecastWeather = [aDecoder decodeObjectForKey:@"forecastWeather"];
-    self.local           = [aDecoder decodeObjectForKey:@"local"];
+
     }
 
     return self;
@@ -56,7 +54,7 @@
     [aCoder encodeObject:self.sunrise forKey:@"sunrise"];
     [aCoder encodeObject:self.icon forKey:@"icon"];
     [aCoder encodeObject:self.forecastWeather forKey:@"forecastWeather"];
-    [aCoder encodeObject:self.local forKey:@"local"];
+
 
 }
 

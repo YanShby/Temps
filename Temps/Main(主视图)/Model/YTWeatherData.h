@@ -10,8 +10,7 @@
 
 
 @interface YTWeatherData : NSObject <NSCoding>
-/**CLLocation*/
-@property (nonatomic, strong) CLLocation *local;
+
 /**地点*/
 @property (nonatomic, strong) NSString *location;
 /**天气状况*/
