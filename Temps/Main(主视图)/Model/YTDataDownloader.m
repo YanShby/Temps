@@ -12,9 +12,6 @@
 #import <SVProgressHUD.h>
 
 @interface YTDataDownloader ()
-
-/**解析地理编码*/
-@property (nonatomic) CLGeocoder    *geocoder;
 /**天气api*/
 @property (nonatomic) NSString      *key;
 
@@ -48,7 +45,6 @@
     
     if(self = [super init]) {
         self.key = key;
-        self.geocoder = [[CLGeocoder alloc] init];
     }
     return self;
 }

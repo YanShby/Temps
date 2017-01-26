@@ -148,8 +148,7 @@ static NSString *ID = @"cell";
                     [self.placemarks addObject:placemark];
                 }
             }
-//            
-//            YTLog(@"%@",placemarks);
+
         }
         [self.resultView reloadData];
     }];
