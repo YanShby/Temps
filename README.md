@@ -4,8 +4,8 @@ ____
 ### 大致界面设计:
 主页面:
 
-Temps/ScreenShots/IMG_1202.PNG
+ ![image](https://github.com/YanShby/Temps/edit/master/screenshots/IMG_1202.png)
 
 添加页面:
 
-Temps/ScreenShots/IMG_1202.PNG
+ ![image](https://github.com/YanShby/Temps/edit/master/screenshots/IMG_1203.png)
