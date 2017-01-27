@@ -331,8 +331,15 @@
 - (NSString *)nowTime:(NSString *)now sunrise:(NSString *)sunrise sunset:(NSString *)sunset {
     
     NSInteger nowString = [now integerValue];
-    NSInteger sunriseString = [sunrise integerValue];
-    NSInteger sunsetString = [sunset integerValue];
+    
+    NSRange range = NSMakeRange(2, 1);
+    NSMutableString *cutSunrise = [NSMutableString stringWithString:sunrise];
+    NSMutableString *cutSunset = [NSMutableString stringWithString:sunset];
+    [cutSunrise deleteCharactersInRange:range];
+    [cutSunset  deleteCharactersInRange:range];
+    
+    NSInteger sunriseString = [cutSunrise integerValue];
+    NSInteger sunsetString = [cutSunset integerValue];
 
     return (nowString > sunriseString && nowString < sunsetString) ? @"sun":@"moon";
 }
