@@ -227,12 +227,21 @@
                                                                              [_locations removeObjectAtIndex:indexPath.row];
                            
                                                                              [YTSaveTool archiveRootObject:_locations toFile:YTSaveLocations];
-                                                                             
-                                                                             [self.rotateTableView reloadData];
+
+                                                                             [UIView transitionWithView:self.rotateTableView
+                                                                                               duration: 0.35f
+                                                                                                options: UIViewAnimationOptionTransitionCrossDissolve
+                                                                                             animations: ^(void)  
+                                                                              {  
+                                                                                  [self.rotateTableView reloadData];
+                                                                              }  
+                                                                                             completion: ^(BOOL isFinished)  
+                                                                              {  
+                                                                                  
+                                                                              }];
                                                                             
                                                                          }];
     delete.backgroundColor = [UIColor clearColor];
-
     
     return @[delete];
 }

@@ -13,7 +13,12 @@
 @protocol YTAddLocationViewControllerDelegate <NSObject>
 
 @optional
-//点击cell把placemark给传出去
+/**
+ *  点击cell把placemark给传出去
+ *
+ *  @param viewController YTAddLocationViewController
+ *  @param placemark      添加地点的placemark
+ */
 - (void)addLocaionVC:(YTAddLocationViewController *)viewController didClickCellWithPlacemark:(CLPlacemark *)placemark;
 
 @end
