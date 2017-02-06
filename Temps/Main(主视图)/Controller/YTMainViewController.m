@@ -19,6 +19,7 @@
 
 @interface YTMainViewController() <UITableViewDelegate, UITableViewDataSource, YTAddLocationViewControllerDelegate>
 
+//*********************************一大波属性******************************************//
 /**添加地区控制器*/
 @property (nonatomic, strong) YTAddLocationViewController *addLocationVC;
 /**高度*/
@@ -29,12 +30,14 @@
 @property (nonatomic, strong) YTBackView *backView;
 /**获取本地地点*/
 @property (nonatomic, readwrite) CLLocationManager   *locationManager;
-/**存放YTWeatherData数据*/
-@property (nonatomic, strong) NSMutableArray *weathers;
 /**存放CLLocation数据*/
 @property (nonatomic, strong) NSMutableArray *locations;
+/**内存中的YTWeatherData数据，根据缓存中的locations数组中的CLLocation来加载数据*/
+@property (nonatomic, strong) NSMutableArray *weathers;
 /**防止调用定位方法*/
 @property (nonatomic, assign) BOOL isCall;
+//*********************************一大波属性******************************************//
+
 @end
 
 @implementation YTMainViewController
@@ -93,7 +96,6 @@
     if (self.locations.count == 0) {
         [self initLocation];
     }
-
     
     [self initRotateTableView];
     
@@ -220,9 +222,11 @@
     UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault
                                                                          title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
                                                                              
+                                                                             //两个数组都要删除
                                                                              [_weathers removeObjectAtIndex:indexPath.row];
+                                                                             [_locations removeObjectAtIndex:indexPath.row];
                            
-                                                                             [YTSaveTool archiveRootObject:_weathers toFile:YTSaveWeathers];
+                                                                             [YTSaveTool archiveRootObject:_locations toFile:YTSaveLocations];
                                                                              
                                                                              [self.rotateTableView reloadData];
                                                                             
@@ -235,7 +239,7 @@
 
 #pragma mark - 获取数据
 /**
- *  更新天气数据
+ *  更新天气数据。
  *  根据weathers数组中的天气数据对象的属性local来获得CLLocation对象，然后根据这个location更新数据
  */
 - (void)updateData {

@@ -22,7 +22,6 @@
 		25B586211E1F3F6400F06EAD /* YTRotatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B586161E1F3F6400F06EAD /* YTRotatedView.m */; };
 		25B586271E1F3F6900F06EAD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B586241E1F3F6900F06EAD /* AppDelegate.m */; };
 		25B586281E1F3F6900F06EAD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B586251E1F3F6900F06EAD /* main.m */; };
-		25B586401E1F3F8500F06EAD /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25B5863F1E1F3F8500F06EAD /* Info.plist */; };
 		25B586511E1F401700F06EAD /* DRNRealTimeBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B586461E1F401700F06EAD /* DRNRealTimeBlurView.m */; };
 		25B586521E1F401700F06EAD /* UIImage+BoxBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B586481E1F401700F06EAD /* UIImage+BoxBlur.m */; };
 		25B586561E1F401700F06EAD /* YTSaveTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B586501E1F401700F06EAD /* YTSaveTool.m */; };
@@ -337,7 +336,6 @@
 				25B5865D1E1F409C00F06EAD /* LaunchScreen.storyboard in Resources */,
 				25B5865A1E1F402600F06EAD /* Climacons.ttf in Resources */,
 				25B5861C1E1F3F6400F06EAD /* YTBackView.xib in Resources */,
-				25B586401E1F3F8500F06EAD /* Info.plist in Resources */,
 				25B585EF1E1F3F4200F06EAD /* Assets.xcassets in Resources */,
 				25B5865E1E1F409C00F06EAD /* Main.storyboard in Resources */,
 				25B586201E1F3F6400F06EAD /* YTForecastTableViewCell.xib in Resources */,

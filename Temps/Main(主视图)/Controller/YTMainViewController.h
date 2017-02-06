@@ -10,8 +10,6 @@
 
 @interface YTMainViewController : UIViewController <CLLocationManagerDelegate>
 
-@property (nonatomic, readonly) CLLocationManager   *locationManager;
-
 - (void)updateData;
 
 @end

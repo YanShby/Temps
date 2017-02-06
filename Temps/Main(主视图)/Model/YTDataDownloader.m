@@ -12,11 +12,12 @@
 #import <SVProgressHUD.h>
 
 @interface YTDataDownloader ()
+
 /**天气api*/
 @property (nonatomic,copy) NSString      *key;
-
 /**记录当前时间*/
 @property (nonatomic, strong) NSString   *time;
+
 @end
 
 @implementation YTDataDownloader
@@ -75,7 +76,7 @@
  
     if (!location) return;
     
-    [SVProgressHUD showWithStatus:showStatus];
+    [SVProgressHUD showWithStatus:showStatus maskType:SVProgressHUDMaskTypeClear];
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
@@ -88,13 +89,14 @@
         if (error) {
             completion(nil,error);
         } else {
-            
+           
             NSDictionary *JSON = [self serializedData:data];
+             [JSON writeToFile:@"/Users/yans/Desktop/data.plist" atomically:YES];
             YTWeatherData *weatherData = [self dataFormJSON:JSON];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 completion(weatherData,error);
-                [SVProgressHUD showSuccessWithStatus:showDone];
+                [SVProgressHUD showSuccessWithStatus:showDone maskType:SVProgressHUDMaskTypeClear];
             });
             
         }
