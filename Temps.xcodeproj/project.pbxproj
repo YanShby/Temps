@@ -32,11 +32,25 @@
 		D64AE504C0971D153E624F41 /* libPods-Temps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E83FED4F7167ED2B71ACE5 /* libPods-Temps.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		258E3E6F1E4C968500A04F6B /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		19E83FED4F7167ED2B71ACE5 /* libPods-Temps.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Temps.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		25168E891E4C453D004E1FE4 /* YTAddLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTAddLocationViewController.m; sourceTree = "<group>"; };
 		257DA95B1E4C6CB20068E801 /* YTLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTLocation.h; sourceTree = "<group>"; };
 		257DA95C1E4C6CB20068E801 /* YTLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTLocation.m; sourceTree = "<group>"; };
+		258E3E5F1E4C968500A04F6B /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		25B585DF1E1F3F4200F06EAD /* Temps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Temps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25B585EE1E1F3F4200F06EAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		25B585FB1E1F3F5D00F06EAD /* YTAddLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTAddLocationViewController.h; sourceTree = "<group>"; };
@@ -271,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				19E83FED4F7167ED2B71ACE5 /* libPods-Temps.a */,
+				258E3E5F1E4C968500A04F6B /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -288,6 +303,7 @@
 				25B585DD1E1F3F4200F06EAD /* Resources */,
 				D0BE5A15B8B6685008A51F52 /* [CP] Embed Pods Frameworks */,
 				FE39088D15EC4B838C46083A /* [CP] Copy Pods Resources */,
+				258E3E6F1E4C968500A04F6B /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -311,6 +327,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = UTSJXW72F3;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};

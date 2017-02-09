@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="646"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="645"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="645.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GET-U0-Je7" userLabel="当天天气容器视图" customClass="YTRotatedView">
@@ -48,11 +48,13 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="定位location" translatesAutoresizingMaskIntoConstraints="NO" id="dxR-bf-9tb" userLabel="LocationIcon">
-                                        <rect key="frame" x="10" y="10" width="13" height="13"/>
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="locationer" translatesAutoresizingMaskIntoConstraints="NO" id="dxR-bf-9tb" userLabel="LocationIcon">
+                                        <rect key="frame" x="10" y="10" width="20" height="20"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="13" id="hLH-X8-Zzy"/>
-                                            <constraint firstAttribute="width" constant="13" id="uO6-E8-fYy"/>
+                                            <constraint firstAttribute="height" constant="20" id="hLH-X8-Zzy"/>
+                                            <constraint firstAttribute="width" constant="20" id="uO6-E8-fYy"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -273,7 +275,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="locationer" width="50" height="50"/>
         <image name="win10-6" width="1920" height="1200"/>
-        <image name="定位location" width="32" height="32"/>
     </resources>
 </document>
