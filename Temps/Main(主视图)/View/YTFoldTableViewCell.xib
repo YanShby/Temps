@@ -48,6 +48,13 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="定位location" translatesAutoresizingMaskIntoConstraints="NO" id="dxR-bf-9tb" userLabel="LocationIcon">
+                                        <rect key="frame" x="10" y="10" width="13" height="13"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="13" id="hLH-X8-Zzy"/>
+                                            <constraint firstAttribute="width" constant="13" id="uO6-E8-fYy"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.69152790310000001" green="0.88945478200000005" blue="0.96924346689999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -58,10 +65,12 @@
                                     <constraint firstAttribute="trailing" secondItem="9vo-3o-mnL" secondAttribute="trailing" constant="10" id="M7V-wm-OQu"/>
                                     <constraint firstAttribute="bottom" secondItem="GGE-pL-j3O" secondAttribute="bottom" constant="10" id="MVm-4i-V9K"/>
                                     <constraint firstItem="GGE-pL-j3O" firstAttribute="leading" secondItem="6D4-sw-kSB" secondAttribute="leading" constant="30" id="XzA-nU-82n"/>
+                                    <constraint firstItem="dxR-bf-9tb" firstAttribute="leading" secondItem="6D4-sw-kSB" secondAttribute="leading" constant="10" id="YPo-HH-g53"/>
                                     <constraint firstItem="9vo-3o-mnL" firstAttribute="centerX" secondItem="6D4-sw-kSB" secondAttribute="centerX" id="br7-75-UI2"/>
                                     <constraint firstItem="hec-cU-siz" firstAttribute="leading" secondItem="6D4-sw-kSB" secondAttribute="leading" constant="30" id="f6I-eo-c8G"/>
                                     <constraint firstItem="GGE-pL-j3O" firstAttribute="centerX" secondItem="6D4-sw-kSB" secondAttribute="centerX" id="fah-XJ-E79"/>
                                     <constraint firstAttribute="trailing" secondItem="GGE-pL-j3O" secondAttribute="trailing" constant="30" id="fb1-Fi-zE9"/>
+                                    <constraint firstItem="dxR-bf-9tb" firstAttribute="top" secondItem="6D4-sw-kSB" secondAttribute="top" constant="10" id="gTm-LA-xYN"/>
                                     <constraint firstItem="hec-cU-siz" firstAttribute="centerX" secondItem="6D4-sw-kSB" secondAttribute="centerX" id="gia-HY-GbQ"/>
                                 </constraints>
                             </view>
@@ -69,25 +78,25 @@
                                 <rect key="frame" x="140" y="0.0" width="140" height="150"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最高: --" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yzs-nD-5RR">
-                                        <rect key="frame" x="20" y="105" width="39.5" height="13.5"/>
+                                        <rect key="frame" x="20" y="104" width="40" height="14"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <color key="textColor" red="0.3200976892978003" green="0.32326697335025378" blue="0.32326697335025378" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最低: --" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAp-Mg-Hrq">
-                                        <rect key="frame" x="20" y="121.5" width="39.5" height="13.5"/>
+                                        <rect key="frame" x="20" y="121" width="40" height="14"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <color key="textColor" red="0.3200976892978003" green="0.32326697335025378" blue="0.32326697335025378" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日出: --:--" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mj2-x3-c16">
-                                        <rect key="frame" x="66.5" y="105" width="53.5" height="13.5"/>
+                                        <rect key="frame" x="66" y="104" width="54" height="14"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <color key="textColor" red="0.3200976892978003" green="0.32326697335025378" blue="0.32326697335025378" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日落: --:--" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3BY-5d-Dhp">
-                                        <rect key="frame" x="66.5" y="121.5" width="53.5" height="13.5"/>
+                                        <rect key="frame" x="66" y="121" width="54" height="14"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <color key="textColor" red="0.3200976892978003" green="0.32326697335025378" blue="0.32326697335025378" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -250,6 +259,7 @@
                 <outlet property="icon" destination="rZh-X4-Moc" id="fw0-g7-QC1"/>
                 <outlet property="locate" destination="jQd-yH-0YR" id="lGZ-p5-Hmm"/>
                 <outlet property="location" destination="9vo-3o-mnL" id="dLD-QA-air"/>
+                <outlet property="locationIcon" destination="dxR-bf-9tb" id="Qty-Eh-igt"/>
                 <outlet property="lowTemp" destination="yAp-Mg-Hrq" id="vQz-t6-TjB"/>
                 <outlet property="now2Bg" destination="Mt6-qL-W2e" id="rXr-Uk-Zir"/>
                 <outlet property="nowBg" destination="6D4-sw-kSB" id="qfh-aE-enG"/>
@@ -264,5 +274,6 @@
     </objects>
     <resources>
         <image name="win10-6" width="1920" height="1200"/>
+        <image name="定位location" width="32" height="32"/>
     </resources>
 </document>

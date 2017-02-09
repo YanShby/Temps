@@ -33,7 +33,6 @@ static const CGFloat YTOpenCellHeight  =  420;
 
 
 
-
 #ifdef DEBUG
 #define YTLog(...) NSLog(__VA_ARGS__)
 #else

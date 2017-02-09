@@ -39,6 +39,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *icon;
 /**未来五天的天气状况*/
 @property (nonatomic, strong) NSArray *forecastWeather;
+@property (weak, nonatomic) IBOutlet UIImageView *locationIcon;
 
 /**预测天气视图*/
 @property (nonatomic, strong) IBOutlet UITableView *forecastTableView;
@@ -223,6 +224,7 @@
     self.sunrise.text = [NSString stringWithFormat:@"日出:%@",weatherData.sunrise];
     self.icon.text = weatherData.icon;
     self.forecastWeather = weatherData.forecastWeather;
+    
     
     self.nowBg.backgroundColor = [self colorWithTemperature:weatherData.temperature];
     self.now2Bg.backgroundColor = self.nowBg.backgroundColor;

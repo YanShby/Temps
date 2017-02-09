@@ -9,13 +9,13 @@
 #import "YTMainViewController.h"
 #import "YTAddLocationViewController.h"
 
-
 #import "YTFoldTableViewCell.h"
 #import "YTDataDownloader.h"
 #import "YTWeatherData.h"
 #import "YTBackView.h"
 
 #import <SVProgressHUD.h>
+
 
 @interface YTMainViewController() <UITableViewDelegate, UITableViewDataSource, YTAddLocationViewControllerDelegate>
 
@@ -69,10 +69,10 @@
 
 - (NSMutableArray *)locations {
     
-    if (_locations == nil) {
+    if (_locations == nil || _locations.count == 0) {
         _locations = (NSMutableArray *)[YTSaveTool unarchiveObjectWithFile:YTSaveLocations];
 
-        if (_locations == nil) {
+        if (_locations == nil || _locations.count == 0) {
             _locations = [NSMutableArray array];
             [self initBackView];
         }
@@ -130,7 +130,7 @@
 - (void)initRotateTableView {
     
     self.rotateTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+
     [self.rotateTableView registerNib:[UINib nibWithNibName:NSStringFromClass([YTFoldTableViewCell class]) bundle:nil] forCellReuseIdentifier:@"cell"];
     
 }
@@ -139,7 +139,9 @@
 - (void)initBackView {
     
     if (_locations.count == 0) {
-        _backView = [YTBackView backView];
+        if (!_backView) {
+            _backView = [YTBackView backView];
+        }
         [self.view insertSubview:_backView atIndex:1];
     }
 }
@@ -147,7 +149,9 @@
 #pragma mark - tableViewDataSource 和 tableViewDelegate
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return _locations.count;
+    NSInteger count = [self locations].count;
+    
+    return count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -212,7 +216,7 @@
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    return indexPath.row == 0 ? UITableViewCellEditingStyleNone : UITableViewCellEditingStyleDelete;
+    return UITableViewCellEditingStyleDelete;
 }
 
 // 自定义左滑显示编辑按钮
@@ -259,7 +263,7 @@
         
         [self updateWeatherData:location atIndex:i];
     }
-
+    
 }
 
 /**
@@ -315,7 +319,7 @@
  */
 - (void)acquireDataWithLocation:(CLLocation *)location {
     
-    [[YTDataDownloader sharedDownloader] dataForLocation:location showStatus:@"正在获取本地数据" showDone:nil completion:^(YTWeatherData *data, NSError *error) {
+    [[YTDataDownloader sharedDownloader] dataForLocation:location showStatus:@"正在获取数据" showDone:nil completion:^(YTWeatherData *data, NSError *error) {
         if (error && !data) {
             
             [self downloadFailed];
@@ -366,11 +370,11 @@
 -(void)addLocaionVC:(YTAddLocationViewController *)viewController didClickCellWithPlacemark:(CLPlacemark *)placemark {
 
     CLLocation *location = placemark.location;
-    
- 
+
     [self acquireDataWithLocation:location];
     
     [_heightArray addObject:[NSNumber numberWithFloat:YTCloseCellHeight]];
+
 }
 
 @end

@@ -29,6 +29,8 @@
 @property (nonatomic, strong) NSString *icon;
 /**未来五天的天气状况*/
 @property (nonatomic, strong) NSArray *forecastWeather;
+/**判断是否为本地*/
+@property (nonatomic, assign) BOOL here;
 
 - (instancetype)initWithDict:(NSDictionary *)dict;
 

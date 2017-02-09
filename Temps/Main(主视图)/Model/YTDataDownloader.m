@@ -88,7 +88,7 @@
         
         [responseObject writeToFile:@"/Users/yans/Desktop/data.plist" atomically:YES];
         YTWeatherData *weatherData = [self dataFormJSON:responseObject];
-        
+
         dispatch_async(dispatch_get_main_queue(), ^{
             completion(weatherData,nil);
             [SVProgressHUD showSuccessWithStatus:showDone maskType:SVProgressHUDMaskTypeClear];
