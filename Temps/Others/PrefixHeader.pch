@@ -14,9 +14,11 @@
 
 #import "YTSaveTool.h"
 
+
 #define YTBundle   [NSBundle mainBundle]
 #define YTScreenW  [UIScreen mainScreen].bounds.size.width
 #define YTScreenH  [UIScreen mainScreen].bounds.size.height
+#define YT_API_GET @"https://free-api.heweather.com/v5/weather"
 #define YT_API_Key @"41e80f90800e40f69693679ba5be23ee"
 #define YTSaveLocations @"locations.plist"
 #define YTSaveWeathers @"weathers.plist"

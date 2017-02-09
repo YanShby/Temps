@@ -9,6 +9,7 @@
 #import "YTAddLocationViewController.h"
 #import "DRNRealTimeBlurView.h"
 
+
 static NSString *ID = @"cell";
 
 @interface YTAddLocationViewController () <UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
@@ -24,13 +25,9 @@ static NSString *ID = @"cell";
 /**存放解码的CLPlacemark数组*/
 @property (nonatomic, strong) NSMutableArray *placemarks;
 
-
-
 @end
 
 @implementation YTAddLocationViewController
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -125,10 +122,11 @@ static NSString *ID = @"cell";
         self.view.alpha = 0;
 
     } completion:^(BOOL finished) {
+
         self.placemarks = nil;
         [self.resultView reloadData];
         [self.view removeFromSuperview];
-        self.view = nil;
+        self.view       = nil;
         
     }];
     
@@ -136,17 +134,14 @@ static NSString *ID = @"cell";
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    YTLog(@"%@",searchText);
+
     self.placemarks = nil;
     [self.geocoder geocodeAddressString:searchText completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
         if (error == nil) {
 
             for (CLPlacemark *placemark in placemarks) {
-
-                if ([placemark.locality containsString:searchText]) {
-                    YTLog(@"%@",placemarks);
-                    [self.placemarks addObject:placemark];
-                }
+                YTLog(@"placemark ---- %@",placemarks);
+                [self.placemarks addObject:placemark];
             }
 
         }
@@ -186,10 +181,18 @@ static NSString *ID = @"cell";
     }
     
     CLPlacemark *placemark = self.placemarks[indexPath.row];
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"%@, %@",placemark.administrativeArea,placemark.locality];
+    NSString *info = nil;
+    if (placemark.subLocality) {
+        info = [NSString stringWithFormat:@"%@, %@, %@",placemark.administrativeArea,placemark.locality,placemark.subLocality];
+    } else {
+        info = [NSString stringWithFormat:@"%@, %@",placemark.administrativeArea,placemark.locality];
+
+    }
+    cell.textLabel.text = info;
+    cell.textLabel.font = [UIFont systemFontOfSize:15];
+    cell.textLabel.textColor = [UIColor whiteColor];
     cell.backgroundColor = [UIColor clearColor];
-    cell.textColor = [UIColor darkGrayColor];
+
 
 
     return cell;

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25168E8A1E4C453D004E1FE4 /* YTAddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25168E891E4C453D004E1FE4 /* YTAddLocationViewController.m */; };
 		25B585EF1E1F3F4200F06EAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25B585EE1E1F3F4200F06EAD /* Assets.xcassets */; };
-		25B585FF1E1F3F5D00F06EAD /* YTAddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B585FC1E1F3F5D00F06EAD /* YTAddLocationViewController.m */; };
 		25B586171E1F3F6400F06EAD /* YTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B586031E1F3F6400F06EAD /* YTMainViewController.m */; };
 		25B586181E1F3F6400F06EAD /* YTDataDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B586061E1F3F6400F06EAD /* YTDataDownloader.m */; };
 		25B586191E1F3F6400F06EAD /* YTForecastData.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B586081E1F3F6400F06EAD /* YTForecastData.m */; };
@@ -33,10 +33,10 @@
 
 /* Begin PBXFileReference section */
 		19E83FED4F7167ED2B71ACE5 /* libPods-Temps.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Temps.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		25168E891E4C453D004E1FE4 /* YTAddLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTAddLocationViewController.m; sourceTree = "<group>"; };
 		25B585DF1E1F3F4200F06EAD /* Temps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Temps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25B585EE1E1F3F4200F06EAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		25B585FB1E1F3F5D00F06EAD /* YTAddLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTAddLocationViewController.h; sourceTree = "<group>"; };
-		25B585FC1E1F3F5D00F06EAD /* YTAddLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTAddLocationViewController.m; sourceTree = "<group>"; };
 		25B586021E1F3F6400F06EAD /* YTMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTMainViewController.h; sourceTree = "<group>"; };
 		25B586031E1F3F6400F06EAD /* YTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTMainViewController.m; sourceTree = "<group>"; };
 		25B586051E1F3F6400F06EAD /* YTDataDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YTDataDownloader.h; path = "../Main(主视图)/Model/YTDataDownloader.h"; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				25B585FB1E1F3F5D00F06EAD /* YTAddLocationViewController.h */,
-				25B585FC1E1F3F5D00F06EAD /* YTAddLocationViewController.m */,
+				25168E891E4C453D004E1FE4 /* YTAddLocationViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -400,8 +400,8 @@
 				25B586561E1F401700F06EAD /* YTSaveTool.m in Sources */,
 				25B586271E1F3F6900F06EAD /* AppDelegate.m in Sources */,
 				25B5861F1E1F3F6400F06EAD /* YTForecastTableViewCell.m in Sources */,
+				25168E8A1E4C453D004E1FE4 /* YTAddLocationViewController.m in Sources */,
 				25B5861B1E1F3F6400F06EAD /* YTBackView.m in Sources */,
-				25B585FF1E1F3F5D00F06EAD /* YTAddLocationViewController.m in Sources */,
 				25B586211E1F3F6400F06EAD /* YTRotatedView.m in Sources */,
 				25B586191E1F3F6400F06EAD /* YTForecastData.m in Sources */,
 				25B586171E1F3F6400F06EAD /* YTMainViewController.m in Sources */,

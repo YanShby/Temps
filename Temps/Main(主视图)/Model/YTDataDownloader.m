@@ -9,7 +9,9 @@
 #import "YTDataDownloader.h"
 #import "YTWeatherData.h"
 #import "Climacons.h"
+
 #import <SVProgressHUD.h>
+#import <AFNetworking.h>
 
 @interface YTDataDownloader ()
 
@@ -17,7 +19,8 @@
 @property (nonatomic,copy) NSString      *key;
 /**记录当前时间*/
 @property (nonatomic, strong) NSString   *time;
-
+/**AFN HTTP 请求管理者*/
+@property (nonatomic, strong) AFHTTPRequestOperationManager *mgr;
 @end
 
 @implementation YTDataDownloader
@@ -48,6 +51,7 @@
     
     if(self = [super init]) {
         self.key = key;
+        self.mgr = [AFHTTPRequestOperationManager manager];
     }
     return self;
 }
@@ -79,68 +83,46 @@
     [SVProgressHUD showWithStatus:showStatus maskType:SVProgressHUDMaskTypeClear];
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    
-    NSURLSession *session = [NSURLSession sharedSession];
-    
-    NSURLRequest *request = [self urlRequestForLocation:location];
-    
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
 
-        if (error) {
-            completion(nil,error);
-        } else {
-           
-            NSDictionary *JSON = [self serializedData:data];
-             [JSON writeToFile:@"/Users/yans/Desktop/data.plist" atomically:YES];
-            YTWeatherData *weatherData = [self dataFormJSON:JSON];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                completion(weatherData,error);
-                [SVProgressHUD showSuccessWithStatus:showDone maskType:SVProgressHUDMaskTypeClear];
-            });
-            
-        }
+    [self.mgr GET:YT_API_GET parameters:[self parametersWithLocation:location] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
+        [responseObject writeToFile:@"/Users/yans/Desktop/data.plist" atomically:YES];
+        YTWeatherData *weatherData = [self dataFormJSON:responseObject];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(weatherData,nil);
+            [SVProgressHUD showSuccessWithStatus:showDone maskType:SVProgressHUDMaskTypeClear];
+        });
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+       
+        completion(nil,error);
+        [SVProgressHUD showErrorWithStatus:showDone maskType:SVProgressHUDMaskTypeClear];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+
     }];
     
-    [task resume];
-}
-
-/**
- *  根据提供的CLLocation对象返回一个GET请求
- *
- *  @param location 地点
- *
- *  @return 返回一个天气接口的GET请求
- */
-- (NSURLRequest *)urlRequestForLocation:(CLLocation *)location {
     
-    static NSString *baseURL           = @"https://free-api.heweather.com/v5/weather?";
-    static NSString *parameters        = @"city";
-    CLLocationCoordinate2D coordinates = location.coordinate;
-    NSString *requestURL               = [NSString stringWithFormat:@"%@%@=%f,%f&key=%@",baseURL,parameters,coordinates.longitude,coordinates.latitude,self.key];
-    NSURL *url                         = [NSURL URLWithString:requestURL];
-    NSURLRequest *request              = [NSURLRequest requestWithURL:url];
-    return request;
 }
 
 /**
- *  把请求返回的二进制数据用NSJSONSerialization解析成字典
+ *  根据CLLocation数据生成对应的接口参数
  *
- *  @param data 请求返回的二进制数据
+ *  @param location 地点对象
  *
- *  @return 返回JSON字典
+ *  @return 返回接口参数
  */
-- (NSDictionary *)serializedData:(NSData *)data
-{
-    NSError *JSONSerializationError;
-    NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&JSONSerializationError];
-    if(JSONSerializationError) {
-        [NSException raise:@"JSON Serialization Error" format:@"Failed to parse weather data"];
-    }
-    return JSON;
+- (NSMutableDictionary *)parametersWithLocation:(CLLocation *)location {
+    
+    NSMutableDictionary *parameters         = [NSMutableDictionary dictionary];
+    CLLocationCoordinate2D coordinates      = location.coordinate;
+    parameters[@"city"]                      = [NSString stringWithFormat:@"%f,%f",coordinates.longitude,coordinates.latitude];
+    YTLog(@"citycitycity----%@",parameters[@"city"]);
+    parameters[@"key"]                       = self.key;
+    
+    return parameters;
 }
+
 
 /**
  *  根据JSON解析的字典返回一个天气数据对象
@@ -195,8 +177,6 @@
 
         [newForecast addObject:forecastDict];
     }
-
-
 
     [weatherDict setObject:location forKey:@"location"];
     [weatherDict setObject:weather forKey:@"weather"];

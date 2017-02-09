@@ -300,7 +300,6 @@
     
 }
 
-
 /**
  *  获取数据失败
  */
@@ -316,7 +315,6 @@
  */
 - (void)acquireDataWithLocation:(CLLocation *)location {
     
-  
     [[YTDataDownloader sharedDownloader] dataForLocation:location showStatus:@"正在获取本地数据" showDone:nil completion:^(YTWeatherData *data, NSError *error) {
         if (error && !data) {
             
@@ -336,8 +334,6 @@
             [YTSaveTool archiveRootObject:_locations toFile:YTSaveLocations];
         }
     }];
-
-
 }
 
 
@@ -364,13 +360,13 @@
     animation.duration = 0.4;
     
     [self.view.layer addAnimation:animation forKey:nil];
-    
 }
 
 #pragma mark - <YTAddLocationViewControllerDelegate>
 -(void)addLocaionVC:(YTAddLocationViewController *)viewController didClickCellWithPlacemark:(CLPlacemark *)placemark {
 
     CLLocation *location = placemark.location;
+    
  
     [self acquireDataWithLocation:location];
     
