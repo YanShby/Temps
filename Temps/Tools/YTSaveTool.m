@@ -16,7 +16,7 @@
     NSString *filePath = [cachePath stringByAppendingPathComponent:file];
     
     YTLog(@"%@",filePath);
-    
+    [NSKeyedArchiver archiveRootObject:object toFile:@"/Users/yans/Desktop/LOCATIONS.plist"];
     return [NSKeyedArchiver archiveRootObject:object toFile:filePath];
 }
 

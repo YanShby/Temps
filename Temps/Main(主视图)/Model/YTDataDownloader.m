@@ -9,6 +9,7 @@
 #import "YTDataDownloader.h"
 #import "YTWeatherData.h"
 #import "Climacons.h"
+#import "YTLocation.h"
 
 #import <SVProgressHUD.h>
 #import <AFNetworking.h>
@@ -74,9 +75,7 @@
  *  @param showDone   加载结束时的提示信息
  *  @param completion 一个Block回调，接收请求传回来的数据及错误
  */
-
-
-- (void)dataForLocation:(CLLocation *)location showStatus:(NSString *)showStatus showDone:(NSString *)showDone completion:(YTWeatherDataDownloadCompletion)completion {
+- (void)dataForLocation:(YTLocation *)location showStatus:(NSString *)showStatus showDone:(NSString *)showDone completion:(YTWeatherDataDownloadCompletion)completion {
  
     if (!location) return;
     
@@ -85,14 +84,16 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 
     [self.mgr GET:YT_API_GET parameters:[self parametersWithLocation:location] success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        [responseObject writeToFile:@"/Users/yans/Desktop/data.plist" atomically:YES];
+
         YTWeatherData *weatherData = [self dataFormJSON:responseObject];
+
+        weatherData.here = location.isHere ? YES : NO;
 
         dispatch_async(dispatch_get_main_queue(), ^{
             completion(weatherData,nil);
             [SVProgressHUD showSuccessWithStatus:showDone maskType:SVProgressHUDMaskTypeClear];
         });
+        
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
        
@@ -112,10 +113,10 @@
  *
  *  @return 返回接口参数
  */
-- (NSMutableDictionary *)parametersWithLocation:(CLLocation *)location {
+- (NSMutableDictionary *)parametersWithLocation:(YTLocation *)location {
     
     NSMutableDictionary *parameters         = [NSMutableDictionary dictionary];
-    CLLocationCoordinate2D coordinates      = location.coordinate;
+    CLLocationCoordinate2D coordinates      = location.cl_location.coordinate;
     parameters[@"city"]                      = [NSString stringWithFormat:@"%f,%f",coordinates.longitude,coordinates.latitude];
     YTLog(@"citycitycity----%@",parameters[@"city"]);
     parameters[@"key"]                       = self.key;

@@ -214,6 +214,8 @@
 #pragma mark - setter方法
 - (void)setWeatherData:(YTWeatherData *)weatherData {
     
+    self.locationIcon.hidden = weatherData.here ? NO : YES;
+    
     self.location.text = weatherData.location;
     self.locate.text = weatherData.location;
     self.weather.text = weatherData.weather;

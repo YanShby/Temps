@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class YTWeatherData;
+@class YTLocation;
 
 typedef void (^YTWeatherDataDownloadCompletion)(YTWeatherData *data, NSError *error);
 
@@ -17,6 +18,6 @@ typedef void (^YTWeatherDataDownloadCompletion)(YTWeatherData *data, NSError *er
 
 + (YTDataDownloader *)sharedDownloader;
 
-- (void)dataForLocation:(CLLocation *)location showStatus:(NSString *)showStatus showDone:(NSString *)showDone completion:(YTWeatherDataDownloadCompletion)completion;
+- (void)dataForLocation:(YTLocation *)location showStatus:(NSString *)showStatus showDone:(NSString *)showDone completion:(YTWeatherDataDownloadCompletion)completion;
 
 @end

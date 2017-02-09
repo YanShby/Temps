@@ -13,6 +13,7 @@
 #import "YTDataDownloader.h"
 #import "YTWeatherData.h"
 #import "YTBackView.h"
+#import "YTLocation.h"
 
 #import <SVProgressHUD.h>
 
@@ -30,7 +31,7 @@
 @property (nonatomic, strong) YTBackView *backView;
 /**获取本地地点*/
 @property (nonatomic, readwrite) CLLocationManager   *locationManager;
-/**存放CLLocation数据*/
+/**存放自定义YTLocation数据*/
 @property (nonatomic, strong) NSMutableArray *locations;
 /**内存中的YTWeatherData数据，根据缓存中的locations数组中的CLLocation来加载数据*/
 @property (nonatomic, strong) NSMutableArray *weathers;
@@ -146,12 +147,14 @@
     }
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
 #pragma mark - tableViewDataSource 和 tableViewDelegate
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    NSInteger count = [self locations].count;
-    
-    return count;
+
+    return  [self locations].count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -259,8 +262,8 @@
     
     
     for (int i = 0 ; i < _locations.count; i++) {
-        CLLocation *location = _locations[i];
-        
+        YTLocation *location = _locations[i];
+        YTLog(@"here:location---%d",location.here);
         [self updateWeatherData:location atIndex:i];
     }
     
@@ -272,7 +275,7 @@
  *  @param location 地点对象
  *  @param index    weathers数组中对应的位置，每个位置都有一个天气数据对象
  */
-- (void)updateWeatherData:(CLLocation *)location atIndex:(NSInteger)index {
+- (void)updateWeatherData:(YTLocation *)location atIndex:(NSInteger)index {
 
     
     [[YTDataDownloader sharedDownloader] dataForLocation:location showStatus:@"正在更新数据" showDone:nil completion:^(YTWeatherData *data, NSError *error) {
@@ -317,7 +320,7 @@
  *
  *  @param location 定位的本地location
  */
-- (void)acquireDataWithLocation:(CLLocation *)location {
+- (void)acquireDataWithLocation:(YTLocation *)location {
     
     [[YTDataDownloader sharedDownloader] dataForLocation:location showStatus:@"正在获取数据" showDone:nil completion:^(YTWeatherData *data, NSError *error) {
         if (error && !data) {
@@ -347,8 +350,11 @@
     if (self.isCall) return;
     
     [self.locationManager stopUpdatingLocation];
+    
+    YTLocation *location = [YTLocation locationWithCLLocation:[locations lastObject]];
+    location.here = YES;
    
-    [self acquireDataWithLocation:[locations lastObject]];
+    [self acquireDataWithLocation:location];
 
     self.isCall = YES;
 }
@@ -369,8 +375,9 @@
 #pragma mark - <YTAddLocationViewControllerDelegate>
 -(void)addLocaionVC:(YTAddLocationViewController *)viewController didClickCellWithPlacemark:(CLPlacemark *)placemark {
 
-    CLLocation *location = placemark.location;
-
+    YTLocation *location = [YTLocation locationWithCLLocation:placemark.location];
+    location.here = NO;
+    
     [self acquireDataWithLocation:location];
     
     [_heightArray addObject:[NSNumber numberWithFloat:YTCloseCellHeight]];

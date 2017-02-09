@@ -112,6 +112,10 @@ static NSString *ID = @"cell";
     return _placemarks;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
 
 #pragma mark - <UISearchBarDelegate>
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
