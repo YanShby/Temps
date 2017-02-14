@@ -4,7 +4,7 @@
 //
 //  Created by Yans on 2017/1/2.
 //  Copyright © 2017年 Yans. All rights reserved.
-//
+//  API:@"https://free-api.heweather.com/v5/weather?city=beijing&&key=41e80f90800e40f69693679ba5be23ee"
 
 #import "YTDataDownloader.h"
 #import "YTWeatherData.h"
@@ -115,12 +115,21 @@
  */
 - (NSMutableDictionary *)parametersWithLocation:(YTLocation *)location {
     
-    NSMutableDictionary *parameters         = [NSMutableDictionary dictionary];
-    CLLocationCoordinate2D coordinates      = location.cl_location.coordinate;
-    parameters[@"city"]                      = [NSString stringWithFormat:@"%f,%f",coordinates.longitude,coordinates.latitude];
+
+
+    NSMutableDictionary *parameters    = [NSMutableDictionary dictionary];
+    CLLocationCoordinate2D coordinates = location.cl_location.coordinate;
+    NSString *city                     = location.cityName;
+
+    if (city) {
+        parameters[@"city"]                = [NSString stringWithFormat:@"%@",city];
+    }else {
+        parameters[@"city"]                = [NSString stringWithFormat:@"%f,%f",coordinates.longitude,coordinates.latitude];
+    }
+
     YTLog(@"citycitycity----%@",parameters[@"city"]);
-    parameters[@"key"]                       = self.key;
-    
+    parameters[@"key"]                 = self.key;
+
     return parameters;
 }
 

@@ -144,7 +144,6 @@ static NSString *ID = @"cell";
         if (error == nil) {
 
             for (CLPlacemark *placemark in placemarks) {
-                YTLog(@"placemark ---- %@",placemarks);
                 [self.placemarks addObject:placemark];
             }
 

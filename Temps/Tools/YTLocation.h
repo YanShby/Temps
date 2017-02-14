@@ -13,6 +13,8 @@
 @property (nonatomic, assign, getter=isHere) BOOL here;
 /**CLLocation*/
 @property (nonatomic, strong) CLLocation *cl_location;
+/**城市名称*/
+@property (nonatomic, copy) NSString *cityName;
 
 + (instancetype)locationWithCLLocation:(CLLocation *)location;
 @end

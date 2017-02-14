@@ -37,6 +37,8 @@
 @property (nonatomic, strong) NSMutableArray *weathers;
 /**防止调用定位方法*/
 @property (nonatomic, assign) BOOL isCall;
+/**判断是否为更新数据。当界面已经有数据时，再次进入程序更新数据，值为YES；如果是首次运行程序，值为NO*/
+@property (nonatomic, assign) BOOL isUpdate;
 //*********************************一大波属性******************************************//
 
 @end
@@ -93,11 +95,9 @@
 - (void)viewDidLoad {
    
     [super viewDidLoad];
-   
-    if (self.locations.count == 0) {
-        [self initLocation];
-    }
-    
+
+    [self initLocation];
+
     [self initRotateTableView];
     
     _addLocationVC = [[YTAddLocationViewController alloc] init];
@@ -107,7 +107,12 @@
 - (void)viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
-    [self updateData];
+    //判断是否为更新数据
+    self.isUpdate = (self.locations.count == 0) ? NO : YES;
+    //视图显示完毕开始定位
+    [self.locationManager startUpdatingLocation];
+    if (self.isUpdate)
+        [self updateData];
 }
 
 #pragma mark - 初始化
@@ -119,12 +124,10 @@
     self.locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
     self.isCall                          = NO;
     if ([UIDevice currentDevice].systemVersion.doubleValue >= 8.0) {
-
         //请求用户授权--> 当用户在使用的时候授权, 还需要增加info.plist的一个key
         [self.locationManager requestWhenInUseAuthorization];
     }
 
-    [self.locationManager startUpdatingLocation];
 }
 
 //初始化RotateTableView
@@ -259,8 +262,7 @@
  *  根据weathers数组中的天气数据对象的属性local来获得CLLocation对象，然后根据这个location更新数据
  */
 - (void)updateData {
-    
-    
+
     for (int i = 0 ; i < _locations.count; i++) {
         YTLocation *location = _locations[i];
         YTLog(@"here:location---%d",location.here);
@@ -348,15 +350,23 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     
     if (self.isCall) return;
-    
-    [self.locationManager stopUpdatingLocation];
-    
+
     YTLocation *location = [YTLocation locationWithCLLocation:[locations lastObject]];
     location.here = YES;
-   
-    [self acquireDataWithLocation:location];
+    
+    /**
+     * 如果界面上没有数据（self.isUpdate == NO）那么直接下载定位数据
+     * 如果界面上已经添加过数据，那么首先更改第一个位置上的定位数据，然后在更新数据。
+     */
+    if (self.isUpdate) {
+        [_locations replaceObjectAtIndex:0 withObject:location];
+    } else {
+        [self acquireDataWithLocation:location];
+    }
 
     self.isCall = YES;
+    [self.locationManager stopUpdatingLocation];
+    
 }
 
 #pragma mark - 按钮点击事件
@@ -377,6 +387,13 @@
 
     YTLocation *location = [YTLocation locationWithCLLocation:placemark.location];
     location.here = NO;
+    if (placemark.subLocality) {
+        location.cityName = placemark.subLocality;
+    } else if (placemark.locality) {
+        location.cityName = placemark.locality;
+    }
+    
+    YTLog(@"CITYNAME ---- %@",location.cityName);
     
     [self acquireDataWithLocation:location];
     
