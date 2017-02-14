@@ -184,19 +184,11 @@ static NSString *ID = @"cell";
     }
     
     CLPlacemark *placemark = self.placemarks[indexPath.row];
-    NSString *info = nil;
-    if (placemark.subLocality) {
-        info = [NSString stringWithFormat:@"%@, %@, %@",placemark.administrativeArea,placemark.locality,placemark.subLocality];
-    } else {
-        info = [NSString stringWithFormat:@"%@, %@",placemark.administrativeArea,placemark.locality];
-
-    }
+    NSString *info =  [NSString stringWithFormat:@"%@, %@",placemark.administrativeArea,placemark.locality];
     cell.textLabel.text = info;
     cell.textLabel.font = [UIFont systemFontOfSize:15];
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.backgroundColor = [UIColor clearColor];
-
-
 
     return cell;
 }

@@ -29,6 +29,9 @@
 		25B5865A1E1F402600F06EAD /* Climacons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 25B586591E1F402600F06EAD /* Climacons.ttf */; };
 		25B5865D1E1F409C00F06EAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25B5865B1E1F409C00F06EAD /* LaunchScreen.storyboard */; };
 		25B5865E1E1F409C00F06EAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25B5865C1E1F409C00F06EAD /* Main.storyboard */; };
+		25E2D7171E535C4200464A69 /* HCCommonTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E2D7121E535C4200464A69 /* HCCommonTool.m */; };
+		25E2D7181E535C4200464A69 /* HCCoordinateConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E2D7141E535C4200464A69 /* HCCoordinateConvert.m */; };
+		25E2D7191E535C4200464A69 /* HCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E2D7161E535C4200464A69 /* HCLocationManager.m */; };
 		D64AE504C0971D153E624F41 /* libPods-Temps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E83FED4F7167ED2B71ACE5 /* libPods-Temps.a */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +91,12 @@
 		25B586591E1F402600F06EAD /* Climacons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Climacons.ttf; sourceTree = "<group>"; };
 		25B5865B1E1F409C00F06EAD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		25B5865C1E1F409C00F06EAD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		25E2D7111E535C4200464A69 /* HCCommonTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCommonTool.h; sourceTree = "<group>"; };
+		25E2D7121E535C4200464A69 /* HCCommonTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCommonTool.m; sourceTree = "<group>"; };
+		25E2D7131E535C4200464A69 /* HCCoordinateConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCoordinateConvert.h; sourceTree = "<group>"; };
+		25E2D7141E535C4200464A69 /* HCCoordinateConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCoordinateConvert.m; sourceTree = "<group>"; };
+		25E2D7151E535C4200464A69 /* HCLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCLocationManager.h; sourceTree = "<group>"; };
+		25E2D7161E535C4200464A69 /* HCLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCLocationManager.m; sourceTree = "<group>"; };
 		36EEB4C9DB89EDB7A425CFA0 /* Pods-Temps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Temps.release.xcconfig"; path = "Pods/Target Support Files/Pods-Temps/Pods-Temps.release.xcconfig"; sourceTree = "<group>"; };
 		FA8BAD4FE15224839FA3D8B0 /* Pods-Temps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Temps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Temps/Pods-Temps.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -241,6 +250,7 @@
 		25B586411E1F401700F06EAD /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				25E2D7101E535C4200464A69 /* HCLocationManager */,
 				25B586441E1F401700F06EAD /* DRNRealTimeBlurView */,
 				25B5864F1E1F401700F06EAD /* YTSaveTool.h */,
 				25B586501E1F401700F06EAD /* YTSaveTool.m */,
@@ -270,6 +280,19 @@
 				25B586591E1F402600F06EAD /* Climacons.ttf */,
 			);
 			path = "Font(天气字体)";
+			sourceTree = "<group>";
+		};
+		25E2D7101E535C4200464A69 /* HCLocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				25E2D7111E535C4200464A69 /* HCCommonTool.h */,
+				25E2D7121E535C4200464A69 /* HCCommonTool.m */,
+				25E2D7131E535C4200464A69 /* HCCoordinateConvert.h */,
+				25E2D7141E535C4200464A69 /* HCCoordinateConvert.m */,
+				25E2D7151E535C4200464A69 /* HCLocationManager.h */,
+				25E2D7161E535C4200464A69 /* HCLocationManager.m */,
+			);
+			path = HCLocationManager;
 			sourceTree = "<group>";
 		};
 		6625678EC0021A931F5C1B2F /* Pods */ = {
@@ -434,10 +457,13 @@
 				25B5861D1E1F3F6400F06EAD /* YTFoldTableViewCell.m in Sources */,
 				25B586181E1F3F6400F06EAD /* YTDataDownloader.m in Sources */,
 				25B586521E1F401700F06EAD /* UIImage+BoxBlur.m in Sources */,
+				25E2D7171E535C4200464A69 /* HCCommonTool.m in Sources */,
 				25B586281E1F3F6900F06EAD /* main.m in Sources */,
 				25B5861A1E1F3F6400F06EAD /* YTWeatherData.m in Sources */,
 				25B586511E1F401700F06EAD /* DRNRealTimeBlurView.m in Sources */,
 				257DA95D1E4C6CB20068E801 /* YTLocation.m in Sources */,
+				25E2D7181E535C4200464A69 /* HCCoordinateConvert.m in Sources */,
+				25E2D7191E535C4200464A69 /* HCLocationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

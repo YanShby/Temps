@@ -4,7 +4,7 @@
 //
 //  Created by Yans on 2017/1/2.
 //  Copyright © 2017年 Yans. All rights reserved.
-//  API:@"https://free-api.heweather.com/v5/weather?city=beijing&&key=41e80f90800e40f69693679ba5be23ee"
+//  API:@"https://free-api.heweather.com/v5/weather?city=37.785834,122.406417&&key=41e80f90800e40f69693679ba5be23ee"
 
 #import "YTDataDownloader.h"
 #import "YTWeatherData.h"
@@ -86,6 +86,17 @@
     [self.mgr GET:YT_API_GET parameters:[self parametersWithLocation:location] success:^(AFHTTPRequestOperation *operation, id responseObject) {
 
         YTWeatherData *weatherData = [self dataFormJSON:responseObject];
+        
+        if (weatherData == nil) {
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(nil,nil);
+                [SVProgressHUD showErrorWithStatus:showDone maskType:SVProgressHUDMaskTypeClear];
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+                
+            });
+            return ;
+        }
 
         weatherData.here = location.isHere ? YES : NO;
 
@@ -145,6 +156,9 @@
 
     NSArray *hefengWeather            = [JSON objectForKey:@"HeWeather5"];
     NSDictionary *mainDict            = [hefengWeather lastObject];
+    
+    if ([mainDict[@"status"] isEqualToString:@"unknown city"]) return nil;
+    
     NSDictionary *basic               = [mainDict objectForKey:@"basic"];
     NSArray *forecast                 = [mainDict objectForKey:@"daily_forecast"];
     NSDictionary *now                 = [mainDict objectForKey:@"now"];
