@@ -14,7 +14,7 @@
 #import "YTWeatherData.h"
 #import "YTBackView.h"
 #import "YTLocation.h"
-#import "HCLocationManager.h"
+
 
 #import <SVProgressHUD.h>
 
@@ -23,8 +23,7 @@
 <
     UITableViewDelegate,
     UITableViewDataSource,
-    YTAddLocationViewControllerDelegate,
-    HCLocationManagerDelegate
+    YTAddLocationViewControllerDelegate
 >
 
 //*********************************一大波属性******************************************//
@@ -102,8 +101,8 @@
 - (void)viewDidLoad {
    
     [super viewDidLoad];
-//
-//    [self initLocation];
+
+    [self initLocation];
 
     [self initRotateTableView];
     
@@ -117,34 +116,24 @@
     //判断是否为更新数据
     self.isUpdate = (self.locations.count == 0) ? NO : YES;
     //视图显示完毕开始定位
-//    [self.locationManager startUpdatingLocation];
-    [self locationService];
+    [self.locationManager startUpdatingLocation];
 
-}
-
-/**
- *  定位服务
- */
-- (void)locationService{
-    HCLocationManager *locationManager = [HCLocationManager sharedManager];
-    locationManager.delegate = self;
-    [locationManager startLocate];
 }
 
 #pragma mark - 初始化
-////定位初始化
-//- (void)initLocation {
-//    
-//    self.locationManager                 = [[CLLocationManager alloc] init];
-//    self.locationManager.delegate        = self;
-//    self.locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
-//    self.isCall                          = NO;
-//    if ([UIDevice currentDevice].systemVersion.doubleValue >= 8.0) {
-//        //请求用户授权--> 当用户在使用的时候授权, 还需要增加info.plist的一个key
-//        [self.locationManager requestWhenInUseAuthorization];
-//    }
-//
-//}
+//定位初始化
+- (void)initLocation {
+    
+    self.locationManager                 = [[CLLocationManager alloc] init];
+    self.locationManager.delegate        = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
+    self.isCall                          = NO;
+    if ([UIDevice currentDevice].systemVersion.doubleValue >= 8.0) {
+        //请求用户授权--> 当用户在使用的时候授权, 还需要增加info.plist的一个key
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+
+}
 
 //初始化RotateTableView
 - (void)initRotateTableView {
@@ -245,8 +234,11 @@
 -(NSArray<UITableViewRowAction*>*)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault
-                                                                         title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+    UITableViewRowAction *delete = [UITableViewRowAction
+                                    rowActionWithStyle:UITableViewRowActionStyleDefault
+                                    
+                                    title:@"删除"
+                                    handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
                                                                              
                                                                              //两个数组都要删除
                                                                              [_weathers removeObjectAtIndex:indexPath.row];
@@ -370,43 +362,35 @@
     
     YTLocation *location = [YTLocation locationWithCLLocation:[locations lastObject]];
     location.here = YES;
+    
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:location.cl_location completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (placemarks.count > 0) {
+            CLPlacemark *placemark = [placemarks lastObject];
+            NSString *city = placemark.locality;
+            if (!city) {
+                city = placemark.administrativeArea;
+            }
+            location.cityName = city;
+            
+            /**
+             * 如果界面上没有数据（self.isUpdate == NO）那么直接下载定位数据
+             * 如果界面上已经添加过数据，那么首先更改第一个位置上的定位数据，然后在更新数据。
+             */
+            if (self.isUpdate) {
+                [_locations replaceObjectAtIndex:0 withObject:location];
+                [self updateData];
+            } else {
+                [self acquireDataWithLocation:location];
+            }
+        }
+    }];
 
-    /**
-     * 如果界面上没有数据（self.isUpdate == NO）那么直接下载定位数据
-     * 如果界面上已经添加过数据，那么首先更改第一个位置上的定位数据，然后在更新数据。
-     */
-    if (self.isUpdate) {
-        [_locations replaceObjectAtIndex:0 withObject:location];
-        [self updateData];
-    } else {
-        [self acquireDataWithLocation:location];
-    }
 
     self.isCall = YES;
     [self.locationManager stopUpdatingLocation];
     
 }
-
-#pragma mark - <HCLocationManagerDelegate>
-- (void)loationMangerSuccessLocation:(CLLocation *)location city:(NSString *)city{
-    
-    YTLocation *yt_location = [YTLocation locationWithCLLocation:location];
-    yt_location.here = YES;
-    yt_location.cityName = city;
-    
-    /**
-     * 如果界面上没有数据（self.isUpdate == NO）那么直接下载定位数据
-     * 如果界面上已经添加过数据，那么首先更改第一个位置上的定位数据，然后在更新数据。
-     */
-    if (self.isUpdate) {
-        [_locations replaceObjectAtIndex:0 withObject:yt_location];
-        [self updateData];
-    } else {
-        [self acquireDataWithLocation:yt_location];
-    }
-    
-}
-
 
 #pragma mark - 按钮点击事件
 //弹出增添地区天气的view
