@@ -162,6 +162,7 @@
     NSDictionary *basic               = [mainDict objectForKey:@"basic"];
     NSArray *forecast                 = [mainDict objectForKey:@"daily_forecast"];
     NSDictionary *now                 = [mainDict objectForKey:@"now"];
+    NSDictionary *city                 = [[mainDict objectForKey:@"aqi"] objectForKey:@"city"];
 
     //把解析出来的信息放入这个字典
     NSMutableDictionary *weatherDict  = [NSMutableDictionary dictionary];
@@ -175,6 +176,13 @@
     NSString *sunset                  = [[[forecast objectAtIndex:0] objectForKey:@"astro"] objectForKey:@"ss"];
     NSString *icon                    = [self iconForCondition:weather
                                                     timeStatus:[self nowTime:[self time] sunrise:sunrise sunset:sunset]];
+    NSString *pop                     = [[forecast objectAtIndex:0] objectForKey:@"pop"];
+    NSString *hum                     = [now objectForKey:@"hum"];
+    NSString *pcpn                    = [now objectForKey:@"pcpn"];
+    NSString *fl                      = [now objectForKey:@"fl"];
+    NSString *qlty                    = [city objectForKey:@"qlty"];
+    NSString *pm25                    = [city objectForKey:@"pm25"];
+    
     //存放从JSON中取出的预测五天的天气
     NSMutableArray *oldForecast       = [NSMutableArray array];
 
@@ -211,6 +219,12 @@
     [weatherDict setObject:sunset forKey:@"sunset"];
     [weatherDict setObject:icon forKey:@"icon"];
     [weatherDict setObject:newForecast forKey:@"forecastWeather"];
+    [weatherDict setObject:pop forKey:@"pop"];
+    [weatherDict setObject:hum forKey:@"hum"];
+    [weatherDict setObject:pcpn forKey:@"pcpn"];
+    [weatherDict setObject:fl forKey:@"fl"];
+    [weatherDict setObject:qlty forKey:@"qlty"];
+    [weatherDict setObject:pm25 forKey:@"pm25"];
 
     YTWeatherData *weatherData        = [[YTWeatherData alloc] initWithDict:weatherDict];
 

@@ -18,6 +18,11 @@
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *foregoundViewTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *containerViewTopConstraint;
+//体感温度字段对于父控件左边约束
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftLayout;
+//降水量字段对于父控件右边约束
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightLayout;
+
 
 //地点
 @property (weak, nonatomic) IBOutlet UILabel *locate;
@@ -37,6 +42,19 @@
 @property (weak, nonatomic) IBOutlet UILabel *sunrise;
 //天气状况图标
 @property (weak, nonatomic) IBOutlet UILabel *icon;
+//体感温度
+@property (weak, nonatomic) IBOutlet UILabel *fl;
+//相对湿度
+@property (weak, nonatomic) IBOutlet UILabel *hum;
+//降水量
+@property (weak, nonatomic) IBOutlet UILabel *pcpn;
+//空气质量
+@property (weak, nonatomic) IBOutlet UILabel *qlty;
+//pm2.5
+@property (weak, nonatomic) IBOutlet UILabel *pm25;
+//降水概率
+@property (weak, nonatomic) IBOutlet UILabel *pop;
+
 /**未来五天的天气状况*/
 @property (nonatomic, strong) NSArray *forecastWeather;
 @property (weak, nonatomic) IBOutlet UIImageView *locationIcon;
@@ -87,6 +105,9 @@
     [self configureDefaultState];
   
     _animationItemViews = [self createAnimationItemView];
+    
+    self.leftLayout.constant = self.frame.size.width * 0.2;
+    self.rightLayout.constant = self.frame.size.width * 0.2;
 }
 
 
@@ -220,10 +241,16 @@
     self.locate.text = weatherData.location;
     self.weather.text = weatherData.weather;
     self.temperature.text = [NSString stringWithFormat:@"%@°",weatherData.temperature];
-    self.highTemp.text = [NSString stringWithFormat:@"最高:%@°",weatherData.highTemp];
-    self.lowTemp.text = [NSString stringWithFormat:@"最低:%@°",weatherData.lowTemp];
-    self.sunset.text = [NSString stringWithFormat:@"日落:%@",weatherData.sunset];
-    self.sunrise.text = [NSString stringWithFormat:@"日出:%@",weatherData.sunrise];
+    self.highTemp.text = [NSString stringWithFormat:@"最高 : %@℃",weatherData.highTemp];
+    self.lowTemp.text = [NSString stringWithFormat:@"最低 : %@℃",weatherData.lowTemp];
+    self.sunset.text = [NSString stringWithFormat:@"日落 : %@",weatherData.sunset];
+    self.sunrise.text = [NSString stringWithFormat:@"日出 : %@",weatherData.sunrise];
+    self.pop.text = [NSString stringWithFormat:@"降水概率 : %@%%",weatherData.pop];
+    self.pcpn.text = [NSString stringWithFormat:@"降水量 : %@mm",weatherData.pcpn];
+    self.hum.text = [NSString stringWithFormat:@"相对湿度 : %@rh%%",weatherData.hum];
+    self.qlty.text = [NSString stringWithFormat:@"空气质量 : %@",weatherData.qlty];
+    self.pm25.text = [NSString stringWithFormat:@"PM2.5 : %@",weatherData.pm25];
+    self.fl.text = [NSString stringWithFormat:@"体感温度 : %@℃",weatherData.fl];
     self.icon.text = weatherData.icon;
     self.forecastWeather = weatherData.forecastWeather;
     

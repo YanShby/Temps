@@ -12,21 +12,33 @@
 @interface YTWeatherData : NSObject <NSCoding>
 
 /**地点*/
-@property (nonatomic, strong) NSString *location;
+@property (nonatomic, copy) NSString *location;
 /**天气状况*/
-@property (nonatomic, strong) NSString *weather;
+@property (nonatomic, copy) NSString *weather;
 /**当前气温*/
-@property (nonatomic, strong) NSString *temperature;
+@property (nonatomic, copy) NSString *temperature;
 /**今日最高温*/
-@property (nonatomic, strong) NSString *highTemp;
+@property (nonatomic, copy) NSString *highTemp;
 /**今日最低温*/
-@property (nonatomic, strong) NSString *lowTemp;
+@property (nonatomic, copy) NSString *lowTemp;
 /**日出时间*/
-@property (nonatomic, strong) NSString *sunrise;
+@property (nonatomic, copy) NSString *sunrise;
 /**日落时间*/
-@property (nonatomic, strong) NSString *sunset;
+@property (nonatomic, copy) NSString *sunset;
 /**天气状况图标*/
-@property (nonatomic, strong) NSString *icon;
+@property (nonatomic, copy) NSString *icon;
+/**降水概率*/
+@property (nonatomic, copy) NSString *pop;
+/**相对湿度*/
+@property (nonatomic, copy) NSString *hum;
+/**降水量*/
+@property (nonatomic, copy) NSString *pcpn;
+/**体感温度*/
+@property (nonatomic, copy) NSString *fl;
+/**空气质量*/
+@property (nonatomic, copy) NSString *qlty;
+/**pm2.5*/
+@property (nonatomic, copy) NSString *pm25;
 /**未来五天的天气状况*/
 @property (nonatomic, strong) NSArray *forecastWeather;
 /**判断是否为本地*/
@@ -35,3 +47,5 @@
 - (instancetype)initWithDict:(NSDictionary *)dict;
 
 @end
+
+
