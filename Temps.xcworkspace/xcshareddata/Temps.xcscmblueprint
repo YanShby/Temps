@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "05ED1F2C92C6BD72836C3F9501A3CED129EBC913",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "7046FF3AB6DAF5C015F70072863204D6E2D47CB8" : 9223372036854775807,
+    "05ED1F2C92C6BD72836C3F9501A3CED129EBC913" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "5F087970-854D-4E90-87A6-2537E6FE4F87",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "7046FF3AB6DAF5C015F70072863204D6E2D47CB8" : "Temps\/Temps\/Tools\/LocationManager\/",
+    "05ED1F2C92C6BD72836C3F9501A3CED129EBC913" : "Temps\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Temps",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Temps.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/YanShby\/Temps.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "05ED1F2C92C6BD72836C3F9501A3CED129EBC913"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Jentlezhi\/LocationManager.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7046FF3AB6DAF5C015F70072863204D6E2D47CB8"
+    }
+  ]
+}
