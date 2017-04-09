@@ -106,16 +106,6 @@
 - (void)viewDidLoad {
    
     [super viewDidLoad];
-    
-    //这个判断是为了判断是否开启定位, 如果开启定位之后, 默认第一个就是定位数据, 不可删除.
-    if ([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse)
-    {
-        self.locationEnabled = YES;
-    }
-    else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied)
-    {
-        self.locationEnabled = NO;
-    }
 
     [self initLocation];
 
@@ -131,15 +121,13 @@
     //判断是否为更新数据
     self.isUpdate = (self.locations.count == 0) ? NO : YES;
     
-    if ([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse)
-    {
-        //视图显示完毕开始定位
-        [self.locationManager startUpdatingLocation];
-    }
-    else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied)
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied)
     {
         [self updateData];
+        return;
     }
+    
+    [self.locationManager startUpdatingLocation];
 
 }
 
@@ -388,6 +376,16 @@
 #pragma mark - <CLLocationManagerDelegate>
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     
+    //这个判断是为了判断是否开启定位, 如果开启定位之后, 默认第一个就是定位数据, 不可删除.
+    if ([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse)
+    {
+        self.locationEnabled = YES;
+    }
+    else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied)
+    {
+        self.locationEnabled = NO;
+    }
+
     //因为该方法会多次调用，这个判读是为了防止多次调用。
     if (self.isCall) return;
     
