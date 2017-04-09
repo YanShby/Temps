@@ -67,13 +67,7 @@
 /**翻转时的背景色*/
 @property (nonatomic, strong) UIColor *backViewColor;
 
-
-@property (weak, nonatomic) IBOutlet UIView *nowBg;
-@property (weak, nonatomic) IBOutlet UIView *now2Bg;
-@property (weak, nonatomic) IBOutlet UIView *nowOther;
-
-
-
+@property (weak, nonatomic) IBOutlet UIImageView *weatherImage;
 
 @end
 
@@ -106,8 +100,8 @@
   
     _animationItemViews = [self createAnimationItemView];
     
-    self.leftLayout.constant = self.frame.size.width * 0.2;
-    self.rightLayout.constant = self.frame.size.width * 0.2;
+    self.leftLayout.constant = self.frame.size.width * 0.1;
+    self.rightLayout.constant = self.frame.size.width * 0.1;
 }
 
 
@@ -235,12 +229,15 @@
 #pragma mark - setter方法
 - (void)setWeatherData:(YTWeatherData *)weatherData {
     
+    if (!weatherData.location) return;
+    
     self.locationIcon.hidden = weatherData.here ? NO : YES;
     
     self.location.text = weatherData.location;
     self.locate.text = weatherData.location;
     self.weather.text = weatherData.weather;
-    self.temperature.text = [NSString stringWithFormat:@"%@°",weatherData.temperature];
+    self.weatherImage.image = weatherData.weatherImage;
+    self.temperature.text = [NSString stringWithFormat:@"%@",weatherData.temperature];
     self.highTemp.text = [NSString stringWithFormat:@"最高 : %@℃",weatherData.highTemp];
     self.lowTemp.text = [NSString stringWithFormat:@"最低 : %@℃",weatherData.lowTemp];
     self.sunset.text = [NSString stringWithFormat:@"日落 : %@",weatherData.sunset];
@@ -253,11 +250,7 @@
     self.fl.text = [NSString stringWithFormat:@"体感温度 : %@℃",weatherData.fl];
     self.icon.text = weatherData.icon;
     self.forecastWeather = weatherData.forecastWeather;
-    
-    
-    self.nowBg.backgroundColor = [self colorWithTemperature:weatherData.temperature];
-    self.now2Bg.backgroundColor = self.nowBg.backgroundColor;
-    
+
     [self.forecastTableView reloadData];
 }
 
@@ -486,7 +479,7 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
    
-    return 30;
+    return 35;
 }
 
 @end

@@ -43,6 +43,8 @@
 @property (nonatomic, strong) NSArray *forecastWeather;
 /**判断是否为本地*/
 @property (nonatomic, assign) BOOL here;
+/**天气背景*/
+@property (nonatomic, strong) UIImage *weatherImage;
 
 - (instancetype)initWithDict:(NSDictionary *)dict;
 

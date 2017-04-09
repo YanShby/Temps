@@ -34,7 +34,8 @@
     self.fl              = [dict objectForKey:@"fl"];
     self.qlty            = [dict objectForKey:@"qlty"];
     self.pm25            = [dict objectForKey:@"pm25"];
-
+    
+    self.weatherImage    = [dict objectForKey:@"weatherImage"];
     return self;
 }
 
@@ -56,6 +57,7 @@
         self.fl              = [aDecoder decodeObjectForKey:@"fl"];
         self.qlty            = [aDecoder decodeObjectForKey:@"qlty"];
         self.pm25            = [aDecoder decodeObjectForKey:@"pm25"];
+        self.weatherImage    = [aDecoder decodeObjectForKey:@"weatherImage"];
 
     }
 
@@ -79,6 +81,7 @@
     [aCoder encodeObject:self.fl forKey:@"fl"];
     [aCoder encodeObject:self.qlty forKey:@"qlty"];
     [aCoder encodeObject:self.pm25 forKey:@"pm25"];
+    [aCoder encodeObject:self.weatherImage forKey:@"weatherImage"];
 
 }
 

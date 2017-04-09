@@ -45,6 +45,11 @@
 @property (nonatomic, assign) BOOL isCall;
 /**判断是否为更新数据。当界面已经有数据时，再次进入程序更新数据，值为YES；如果是首次运行程序，值为NO*/
 @property (nonatomic, assign) BOOL isUpdate;
+
+@property (weak, nonatomic) IBOutlet UIImageView *bgImage;
+
+@property (nonatomic, assign) BOOL locationEnabled;
+
 //*********************************一大波属性******************************************//
 
 @end
@@ -101,6 +106,16 @@
 - (void)viewDidLoad {
    
     [super viewDidLoad];
+    
+    //这个判断是为了判断是否开启定位, 如果开启定位之后, 默认第一个就是定位数据, 不可删除.
+    if ([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse)
+    {
+        self.locationEnabled = YES;
+    }
+    else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied)
+    {
+        self.locationEnabled = NO;
+    }
 
     [self initLocation];
 
@@ -115,8 +130,16 @@
     [super viewDidAppear:animated];
     //判断是否为更新数据
     self.isUpdate = (self.locations.count == 0) ? NO : YES;
-    //视图显示完毕开始定位
-    [self.locationManager startUpdatingLocation];
+    
+    if ([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse)
+    {
+        //视图显示完毕开始定位
+        [self.locationManager startUpdatingLocation];
+    }
+    else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied)
+    {
+        [self updateData];
+    }
 
 }
 
@@ -227,7 +250,15 @@
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return indexPath.row == 0 ? UITableViewCellEditingStyleNone : UITableViewCellEditingStyleDelete;
+    if (self.locationEnabled)
+    {
+        return indexPath.row == 0 ? UITableViewCellEditingStyleNone : UITableViewCellEditingStyleDelete;
+    }
+    else
+    {
+        return UITableViewCellEditingStyleDelete;
+    }
+
 }
 
 // 自定义左滑显示编辑按钮

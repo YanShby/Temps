@@ -183,6 +183,10 @@
     NSString *qlty                    = [city objectForKey:@"qlty"];
     NSString *pm25                    = [city objectForKey:@"pm25"];
     
+    UIImage *weatherImage             = [self imageForCondition:weather
+                                                     timeStatus:[self nowTime:[self time] sunrise:sunrise sunset:sunset]
+                                                    temperature:temperature];
+    
     //存放从JSON中取出的预测五天的天气
     NSMutableArray *oldForecast       = [NSMutableArray array];
 
@@ -225,6 +229,7 @@
     [weatherDict setObject:fl forKey:@"fl"];
     [weatherDict setObject:qlty forKey:@"qlty"];
     [weatherDict setObject:pm25 forKey:@"pm25"];
+    [weatherDict setObject:weatherImage forKey:@"weatherImage"];
 
     YTWeatherData *weatherData        = [[YTWeatherData alloc] initWithDict:weatherDict];
 
@@ -248,7 +253,7 @@
         iconName = [NSString stringWithFormat:@"%c", ClimaconSun];
     } else if ([condition isEqualToString:@"晴间多云"] && [status isEqualToString:@"sun"]) {
         iconName = [NSString stringWithFormat:@"%c", ClimaconCloudSun];
-    } else if ([condition isEqualToString:@"多云"] && [status isEqualToString:@"sun"]) {
+    } else if (([condition isEqualToString:@"多云"] || [condition isEqualToString:@"阴"]) && [status isEqualToString:@"sun"]) {
         iconName = [NSString stringWithFormat:@"%c", ClimaconCloudSun];
     } else if (([condition isEqualToString:@"小雪"]
                || [condition isEqualToString:@"阵雪"]) && [status isEqualToString:@"sun"]) {
@@ -280,7 +285,7 @@
         iconName = [NSString stringWithFormat:@"%c", ClimaconMoon];
     } else if ([condition isEqualToString:@"晴间多云"] && [status isEqualToString:@"moon"]) {
         iconName = [NSString stringWithFormat:@"%c", ClimaconCloudMoon];
-    } else if ([condition isEqualToString:@"多云"] && [status isEqualToString:@"moon"]) {
+    } else if (([condition isEqualToString:@"多云"] || [condition isEqualToString:@"阴"]) && [status isEqualToString:@"moon"]) {
         iconName = [NSString stringWithFormat:@"%c", ClimaconCloudMoon];
     } else if (([condition isEqualToString:@"小雪"]
                 || [condition isEqualToString:@"阵雪"]) && [status isEqualToString:@"moon"]) {
@@ -310,6 +315,23 @@
     
     return iconName;
     
+}
+
+- (UIImage *)imageForCondition:(NSString *)condition timeStatus:(NSString *)status temperature:(NSString *)temp{
+   
+    if ([condition isEqualToString:@"晴"] && [status isEqualToString:@"moon"]) {
+        return [UIImage imageNamed:@"夜间晴"];
+    } else if ([condition isEqualToString:@"晴"] && [status isEqualToString:@"sun"]) {
+        return [UIImage imageNamed:@"晴"];
+    }else if ([condition isEqualToString:@"晴"] && [status isEqualToString:@"sun"] && ([temp integerValue] >= 30)) {
+        return [UIImage imageNamed:@"晴大于30"];
+    }else if ([condition containsString:@"雨"] && [status isEqualToString:@"sun"]) {
+        return [UIImage imageNamed:@"多云有雨"];
+    }else if (([condition isEqualToString:@"多云"] || [condition isEqualToString:@"阴"])&& [status isEqualToString:@"moon"]) {
+        return [UIImage imageNamed:@"夜间多云"];
+    }
+    
+    return [UIImage imageNamed:@"晴"];
 }
 
 /**
