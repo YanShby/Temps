@@ -325,7 +325,7 @@
         return [UIImage imageNamed:@"晴"];
     }else if ([condition isEqualToString:@"晴"] && [status isEqualToString:@"sun"] && ([temp integerValue] >= 30)) {
         return [UIImage imageNamed:@"晴大于30"];
-    }else if ([condition containsString:@"雨"] && [status isEqualToString:@"sun"]) {
+    }else if (([condition containsString:@"雨"] || [condition isEqualToString:@"多云"]) && [status isEqualToString:@"sun"]) {
         return [UIImage imageNamed:@"多云有雨"];
     }else if (([condition isEqualToString:@"多云"] || [condition isEqualToString:@"阴"])&& [status isEqualToString:@"moon"]) {
         return [UIImage imageNamed:@"夜间多云"];

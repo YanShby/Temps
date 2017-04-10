@@ -36,7 +36,6 @@ static NSString *ID = @"cell";
     
     self.view.frame = CGRectMake(0, 0, YTScreenW, YTScreenH);
 
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
