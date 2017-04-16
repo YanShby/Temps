@@ -57,18 +57,37 @@
                                         <blurEffect style="light"/>
                                     </visualEffectView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y5a-q3-cE6">
-                                        <rect key="frame" x="162" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="172" y="10" width="30" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="G9F-EW-gIW"/>
-                                            <constraint firstAttribute="width" constant="50" id="l8T-j6-Ti8"/>
+                                            <constraint firstAttribute="height" constant="30" id="G9F-EW-gIW"/>
+                                            <constraint firstAttribute="width" constant="30" id="l8T-j6-Ti8"/>
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" image="add_weather">
+                                        <state key="normal" image="增加">
                                             <color key="titleColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="tap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mKq-vi-qxL"/>
                                         </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6mm-FO-qJz">
+                                        <rect key="frame" x="20" y="10" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="14Z-py-ZUW"/>
+                                            <constraint firstAttribute="width" constant="30" id="vUz-Bk-ipc"/>
+                                        </constraints>
+                                        <state key="normal" image="刷新"/>
+                                        <connections>
+                                            <action selector="refresh:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jr3-Ot-bSn"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ybu-U1-imC">
+                                        <rect key="frame" x="325" y="10" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="UdY-2p-9qe"/>
+                                            <constraint firstAttribute="height" constant="30" id="nlN-ei-fhu"/>
+                                        </constraints>
+                                        <state key="normal" image="叹号"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -76,10 +95,14 @@
                                     <constraint firstAttribute="height" constant="50" id="4ql-TA-kDh"/>
                                     <constraint firstItem="JNs-Pd-W7C" firstAttribute="leading" secondItem="dIU-jF-150" secondAttribute="leading" id="6nF-pp-kDm"/>
                                     <constraint firstAttribute="bottom" secondItem="JNs-Pd-W7C" secondAttribute="bottom" id="91d-ZD-VVi"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ybu-U1-imC" secondAttribute="trailing" constant="20" id="GMd-Cz-gI5"/>
+                                    <constraint firstItem="Ybu-U1-imC" firstAttribute="centerY" secondItem="dIU-jF-150" secondAttribute="centerY" id="NLd-Na-bDZ"/>
                                     <constraint firstItem="y5a-q3-cE6" firstAttribute="centerY" secondItem="dIU-jF-150" secondAttribute="centerY" id="TGl-9Y-rgo"/>
                                     <constraint firstItem="JNs-Pd-W7C" firstAttribute="top" secondItem="dIU-jF-150" secondAttribute="top" id="oVq-KW-stv"/>
+                                    <constraint firstItem="6mm-FO-qJz" firstAttribute="leading" secondItem="dIU-jF-150" secondAttribute="leading" constant="20" id="q2n-J0-ff3"/>
                                     <constraint firstItem="y5a-q3-cE6" firstAttribute="centerX" secondItem="dIU-jF-150" secondAttribute="centerX" id="rdU-Sg-lPk"/>
                                     <constraint firstAttribute="trailing" secondItem="JNs-Pd-W7C" secondAttribute="trailing" id="x2h-Oo-Bei"/>
+                                    <constraint firstItem="6mm-FO-qJz" firstAttribute="centerY" secondItem="dIU-jF-150" secondAttribute="centerY" id="xcz-YH-fxh"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -98,6 +121,7 @@
                             <constraint firstItem="dIU-jF-150" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vqb-r8-dnS"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="bgImage" destination="pJa-X5-kiO" id="Gis-tU-hCC"/>
                         <outlet property="rotateTableView" destination="70i-6Y-drz" id="meq-rp-Am3"/>
@@ -105,11 +129,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-759" y="177"/>
+            <point key="canvasLocation" x="-759.20000000000005" y="176.76161919040482"/>
         </scene>
     </scenes>
     <resources>
-        <image name="add_weather" width="512" height="512"/>
         <image name="bg" width="2239" height="1461"/>
+        <image name="刷新" width="200" height="200"/>
+        <image name="叹号" width="200" height="200"/>
+        <image name="增加" width="200" height="200"/>
     </resources>
 </document>

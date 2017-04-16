@@ -437,6 +437,10 @@
     
     [self.view.layer addAnimation:animation forKey:nil];
 }
+- (IBAction)refresh:(id)sender {
+    
+    [self updateData];
+}
 
 #pragma mark - <YTAddLocationViewControllerDelegate>
 -(void)addLocaionVC:(YTAddLocationViewController *)viewController didClickCellWithPlacemark:(CLPlacemark *)placemark {
