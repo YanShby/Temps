@@ -13,7 +13,7 @@
 //星期
 @property (weak, nonatomic) IBOutlet UILabel *dayOfWeek;
 //天气状况
-@property (weak, nonatomic) IBOutlet UILabel *weatherIcon;
+@property (weak, nonatomic) IBOutlet UIImageView *weatherIcon;
 //最低  （H 20° L 10°）
 @property (weak, nonatomic) IBOutlet UILabel *low;
 //最高
@@ -34,7 +34,7 @@
 - (void)setForecastData:(YTForecastData *)forecastData {
 
     self.dayOfWeek.text   = forecastData.dayOfWeek;
-    self.weatherIcon.text = forecastData.weatherIcon;
+    self.weatherIcon.image = forecastData.weatherIcon;
     self.high.text        = [NSString stringWithFormat:@"%@°",forecastData.high];
     self.low.text         = [NSString stringWithFormat:@"%@°",forecastData.low];
 

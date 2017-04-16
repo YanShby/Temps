@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		25168E8A1E4C453D004E1FE4 /* YTAddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25168E891E4C453D004E1FE4 /* YTAddLocationViewController.m */; };
+		2530FAEC1EA32F2C00D77B8D /* YTImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2530FAEB1EA32F2C00D77B8D /* YTImageView.m */; };
 		257DA95D1E4C6CB20068E801 /* YTLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 257DA95C1E4C6CB20068E801 /* YTLocation.m */; };
 		25B585EF1E1F3F4200F06EAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25B585EE1E1F3F4200F06EAD /* Assets.xcassets */; };
 		25B586171E1F3F6400F06EAD /* YTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B586031E1F3F6400F06EAD /* YTMainViewController.m */; };
@@ -48,6 +49,8 @@
 /* Begin PBXFileReference section */
 		19E83FED4F7167ED2B71ACE5 /* libPods-Temps.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Temps.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		25168E891E4C453D004E1FE4 /* YTAddLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTAddLocationViewController.m; sourceTree = "<group>"; };
+		2530FAEA1EA32F2C00D77B8D /* YTImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTImageView.h; sourceTree = "<group>"; };
+		2530FAEB1EA32F2C00D77B8D /* YTImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTImageView.m; sourceTree = "<group>"; };
 		257DA95B1E4C6CB20068E801 /* YTLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTLocation.h; sourceTree = "<group>"; };
 		257DA95C1E4C6CB20068E801 /* YTLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTLocation.m; sourceTree = "<group>"; };
 		258E3E5F1E4C968500A04F6B /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -248,6 +251,8 @@
 				25B586061E1F3F6400F06EAD /* YTDataDownloader.m */,
 				257DA95B1E4C6CB20068E801 /* YTLocation.h */,
 				257DA95C1E4C6CB20068E801 /* YTLocation.m */,
+				2530FAEA1EA32F2C00D77B8D /* YTImageView.h */,
+				2530FAEB1EA32F2C00D77B8D /* YTImageView.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -426,6 +431,7 @@
 				25B586561E1F401700F06EAD /* YTSaveTool.m in Sources */,
 				25B586271E1F3F6900F06EAD /* AppDelegate.m in Sources */,
 				25B5861F1E1F3F6400F06EAD /* YTForecastTableViewCell.m in Sources */,
+				2530FAEC1EA32F2C00D77B8D /* YTImageView.m in Sources */,
 				25168E8A1E4C453D004E1FE4 /* YTAddLocationViewController.m in Sources */,
 				25B5861B1E1F3F6400F06EAD /* YTBackView.m in Sources */,
 				25B586211E1F3F6400F06EAD /* YTRotatedView.m in Sources */,

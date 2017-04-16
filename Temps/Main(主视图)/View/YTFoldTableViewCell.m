@@ -11,11 +11,12 @@
 #import "YTRotatedView.h"
 #import "YTWeatherData.h"
 #import "YTForecastData.h"
+#import "YTImageView.h"
 
 @interface YTFoldTableViewCell () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet YTRotatedView *foregroundView;
-@property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (weak, nonatomic) IBOutlet YTImageView *containerView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *foregoundViewTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *containerViewTopConstraint;
 //体感温度字段对于父控件左边约束
@@ -68,6 +69,8 @@
 @property (nonatomic, strong) UIColor *backViewColor;
 
 @property (weak, nonatomic) IBOutlet UIImageView *weatherImage;
+
+@property (weak, nonatomic) IBOutlet UIImageView *weatherIcon;
 
 @end
 
@@ -237,9 +240,10 @@
     self.locate.text = weatherData.location;
     self.weather.text = weatherData.weather;
     self.weatherImage.image = weatherData.weatherImage;
-    self.temperature.text = [NSString stringWithFormat:@"%@",weatherData.temperature];
-    self.highTemp.text = [NSString stringWithFormat:@"最高 : %@℃",weatherData.highTemp];
-    self.lowTemp.text = [NSString stringWithFormat:@"最低 : %@℃",weatherData.lowTemp];
+    self.weatherIcon.image = weatherData.icon;
+    self.temperature.text = [NSString stringWithFormat:@"%@°",weatherData.temperature];
+    self.highTemp.text = [NSString stringWithFormat:@"最高 : %@°",weatherData.highTemp];
+    self.lowTemp.text = [NSString stringWithFormat:@"最低 : %@°",weatherData.lowTemp];
     self.sunset.text = [NSString stringWithFormat:@"日落 : %@",weatherData.sunset];
     self.sunrise.text = [NSString stringWithFormat:@"日出 : %@",weatherData.sunrise];
     self.pop.text = [NSString stringWithFormat:@"降水概率 : %@%%",weatherData.pop];
@@ -248,7 +252,6 @@
     self.qlty.text = [NSString stringWithFormat:@"空气质量 : %@",weatherData.qlty];
     self.pm25.text = [NSString stringWithFormat:@"PM2.5 : %@",weatherData.pm25];
     self.fl.text = [NSString stringWithFormat:@"体感温度 : %@℃",weatherData.fl];
-    self.icon.text = weatherData.icon;
     self.forecastWeather = weatherData.forecastWeather;
 
     [self.forecastTableView reloadData];

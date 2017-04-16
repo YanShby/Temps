@@ -27,7 +27,7 @@
 
 
 #pragma mark - 折叠cell 折叠前后的cell高度
-static const CGFloat YTCloseCellHeight  = 220;
+static const CGFloat YTCloseCellHeight  = 200;
 static const CGFloat YTOpenCellHeight  =  420;
 
 

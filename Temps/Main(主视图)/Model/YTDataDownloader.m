@@ -174,7 +174,7 @@
     NSString *lowTemp                 = [[[forecast objectAtIndex:0] objectForKey:@"tmp"] objectForKey:@"min"];
     NSString *sunrise                 = [[[forecast objectAtIndex:0] objectForKey:@"astro"] objectForKey:@"sr"];
     NSString *sunset                  = [[[forecast objectAtIndex:0] objectForKey:@"astro"] objectForKey:@"ss"];
-    NSString *icon                    = [self iconForCondition:weather
+    UIImage  *icon                    = [self iconForCondition:weather
                                                     timeStatus:[self nowTime:[self time] sunrise:sunrise sunset:sunset]];
     NSString *pop                     = [[forecast objectAtIndex:0] objectForKey:@"pop"];
     NSString *hum                     = [now objectForKey:@"hum"];
@@ -198,14 +198,14 @@
 
     for (int i                        = 0; i < 5 ; i++) {
 
-    NSString *weatherIcon             = [self iconForCondition:[[oldForecast[i] objectForKey:@"cond"] objectForKey:@"txt_d"]
-                                                    timeStatus:@"sun"];
-    NSString *high                    = [[oldForecast[i] objectForKey:@"tmp"] objectForKey:@"max"];
-    NSString *low                     = [[oldForecast[i] objectForKey:@"tmp"] objectForKey:@"min"];
-    NSString *date                    = [oldForecast[i] objectForKey:@"date"];
-    NSString *dayOfWeek               = [self featureWeekdayWithDate:date];
+        UIImage *weatherIcon             = [self iconForCondition:[[oldForecast[i] objectForKey:@"cond"] objectForKey:@"txt_d"]
+                                                        timeStatus:@"sun"];
+        NSString *high                    = [[oldForecast[i] objectForKey:@"tmp"] objectForKey:@"max"];
+        NSString *low                     = [[oldForecast[i] objectForKey:@"tmp"] objectForKey:@"min"];
+        NSString *date                    = [oldForecast[i] objectForKey:@"date"];
+        NSString *dayOfWeek               = [self featureWeekdayWithDate:date];
 
-    NSMutableDictionary *forecastDict = [NSMutableDictionary dictionary];
+        NSMutableDictionary *forecastDict = [NSMutableDictionary dictionary];
         [forecastDict setObject:dayOfWeek forKey:@"dayOfWeek"];
         [forecastDict setObject:weatherIcon forKey:@"weatherIcon"];
         [forecastDict setObject:high forKey:@"high"];
@@ -242,96 +242,130 @@
  *  @param condition 天气状态详情
  *  @param status    时间状态,判断是白天还是黑天.
  *
- *  @return 返回天气数据对应的字符
+ *  @return 返回天气数据对应的icon
  */
-- (NSString *)iconForCondition:(NSString *)condition timeStatus:(NSString *)status
+- (UIImage *)iconForCondition:(NSString *)condition timeStatus:(NSString *)status
 {
-    NSString *iconName = [NSString stringWithFormat:@"%c", ClimaconSun];
-    if ([condition isEqualToString:@"霾"] && [status isEqualToString:@"sun"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconHaze];
-    } else if ([condition isEqualToString:@"晴"] && [status isEqualToString:@"sun"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconSun];
-    } else if ([condition isEqualToString:@"晴间多云"] && [status isEqualToString:@"sun"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconCloudSun];
-    } else if (([condition isEqualToString:@"多云"] || [condition isEqualToString:@"阴"]) && [status isEqualToString:@"sun"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconCloudSun];
-    } else if (([condition isEqualToString:@"小雪"]
-               || [condition isEqualToString:@"阵雪"]) && [status isEqualToString:@"sun"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconSnow];
-    } else if ([condition isEqualToString:@"中雪"] && [status isEqualToString:@"sun"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconFlurries];
-    }  else if (([condition isEqualToString:@"大雪"]
-               || [condition isEqualToString:@"暴雪"]) && [status isEqualToString:@"sun"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconFlurries];
-    } else if ([condition isEqualToString:@"雾"]  && [status isEqualToString:@"sun"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconFogSun];
-    } else if (([condition isEqualToString:@"雷雨"]
-               || [condition isEqualToString:@"雷阵雨"]) && [status isEqualToString:@"sun"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconLightning];
-    } else if ([condition isEqualToString:@"暴雨"] && [status isEqualToString:@"sun"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconHail];
-    } else if ([condition isEqualToString:@"冰雹"] && [status isEqualToString:@"sun"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconSleet];
-    } else if ([condition isEqualToString:@"大雨"] && [status isEqualToString:@"sun"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconDownpour];
-    } else if (([condition isEqualToString:@"小雨"]
-               || [condition isEqualToString:@"阵雨"]) && [status isEqualToString:@"sun"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconDrizzle];
-    }  else if ([condition isEqualToString:@"中雨"] && [status isEqualToString:@"sun"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconRainAlt];
-    }  else if ([condition isEqualToString:@"霾"] && [status isEqualToString:@"moon"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconHazeMoon];
-    } else if ([condition isEqualToString:@"晴"] && [status isEqualToString:@"moon"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconMoon];
-    } else if ([condition isEqualToString:@"晴间多云"] && [status isEqualToString:@"moon"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconCloudMoon];
-    } else if (([condition isEqualToString:@"多云"] || [condition isEqualToString:@"阴"]) && [status isEqualToString:@"moon"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconCloudMoon];
-    } else if (([condition isEqualToString:@"小雪"]
-                || [condition isEqualToString:@"阵雪"]) && [status isEqualToString:@"moon"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconSnowMoon];
-    } else if ([condition isEqualToString:@"中雪"] && [status isEqualToString:@"moon"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconFlurriesMoon];
-    }  else if (([condition isEqualToString:@"大雪"]
-                 || [condition isEqualToString:@"暴雪"]) && [status isEqualToString:@"moon"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconFlurriesMoon];
-    } else if ([condition isEqualToString:@"雾"]  && [status isEqualToString:@"moon"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconFogMoon];
-    } else if (([condition isEqualToString:@"雷雨"]
-                || [condition isEqualToString:@"雷阵雨"]) && [status isEqualToString:@"moon"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconLightningMoon];
-    } else if ([condition isEqualToString:@"暴雨"] && [status isEqualToString:@"moon"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconHailMoon];
-    } else if ([condition isEqualToString:@"冰雹"] && [status isEqualToString:@"moon"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconSleetMoon];
-    } else if ([condition isEqualToString:@"大雨"] && [status isEqualToString:@"moon"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconDownpourMoon];
-    } else if (([condition isEqualToString:@"小雨"]
-                || [condition isEqualToString:@"阵雨"]) && [status isEqualToString:@"moon"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconDrizzleMoon];
-    }  else if ([condition isEqualToString:@"中雨"] && [status isEqualToString:@"moon"]) {
-        iconName = [NSString stringWithFormat:@"%c", ClimaconRainMoonAlt];
+    if ([condition isEqualToString:@"霾"])
+    {
+        return [UIImage imageNamed:@"雾霾icon"];
+    }
+    else if ([condition isEqualToString:@"晴"] && [status isEqualToString:@"sun"])
+    {
+        return [UIImage imageNamed:@"晴icon"];
+    }
+    else if ([condition isEqualToString:@"晴"] && [status isEqualToString:@"moon"])
+    {
+        return [UIImage imageNamed:@"夜间晴icon"];
+    }
+    else if ([condition isEqualToString:@"晴间多云"])
+    {
+        return [UIImage imageNamed:@"多云icon"];
+    }
+    else if (([condition isEqualToString:@"多云"] || [condition isEqualToString:@"阴"]))
+    {
+        return [UIImage imageNamed:@"云icon"];
+    }
+    else if (([condition containsString:@"多云"] || [condition isEqualToString:@"阴"]) && [status isEqualToString:@"moon"])
+    {
+        return [UIImage imageNamed:@"夜间多云icon"];
+    }
+    else if (([condition isEqualToString:@"小雪"] || [condition isEqualToString:@"阵雪"]))
+    {
+        return [UIImage imageNamed:@"小雪icon"];
+    }
+    else if ([condition isEqualToString:@"中雪"])
+    {
+        return [UIImage imageNamed:@"中雪icon"];
+    }
+    else if ([condition isEqualToString:@"大雪"])
+    {
+        return [UIImage imageNamed:@"大雪icon"];
+    }
+    else if ([condition isEqualToString:@"暴雪"])
+    {
+        return [UIImage imageNamed:@"大暴雪icon"];
+    }
+    else if ([condition isEqualToString:@"雾"])
+    {
+        return [UIImage imageNamed:@"雾icon"];
+    }
+    else if (([condition isEqualToString:@"雷雨"] || [condition isEqualToString:@"雷阵雨"]))
+    {
+        return [UIImage imageNamed:@"雷阵雨icon"];
+    }
+    else if ([condition isEqualToString:@"暴雨"])
+    {
+        return [UIImage imageNamed:@"暴雨icon"];
+    }
+    else if ([condition isEqualToString:@"冰雹"])
+    {
+        return [UIImage imageNamed:@"雨加冰雹icon"];
+    }
+    else if ([condition isEqualToString:@"大雨"])
+    {
+        return [UIImage imageNamed:@"大雨icon"];
+    }
+    else if (([condition isEqualToString:@"小雨"] || [condition isEqualToString:@"阵雨"]))
+    {
+        return [UIImage imageNamed:@"小雨icon"];
+    }
+    else if ([condition isEqualToString:@"中雨"])
+    {
+        return [UIImage imageNamed:@"中雨icon"];
     }
     
-    return iconName;
+    return [UIImage imageNamed:@"晴icon"];
     
 }
 
 - (UIImage *)imageForCondition:(NSString *)condition timeStatus:(NSString *)status temperature:(NSString *)temp{
    
-    if ([condition isEqualToString:@"晴"] && [status isEqualToString:@"moon"]) {
-        return [UIImage imageNamed:@"夜间晴"];
-    } else if ([condition isEqualToString:@"晴"] && [status isEqualToString:@"sun"]) {
-        return [UIImage imageNamed:@"晴"];
-    }else if ([condition isEqualToString:@"晴"] && [status isEqualToString:@"sun"] && ([temp integerValue] >= 30)) {
-        return [UIImage imageNamed:@"晴大于30"];
-    }else if (([condition containsString:@"雨"] || [condition isEqualToString:@"多云"]) && [status isEqualToString:@"sun"]) {
-        return [UIImage imageNamed:@"多云有雨"];
-    }else if (([condition isEqualToString:@"多云"] || [condition isEqualToString:@"阴"])&& [status isEqualToString:@"moon"]) {
-        return [UIImage imageNamed:@"夜间多云"];
+    if ([condition isEqualToString:@"晴"] && [status isEqualToString:@"sun"]) {
+        return [UIImage imageNamed:@"晴天-日"];
     }
-    
-    return [UIImage imageNamed:@"晴"];
+    else if ([condition isEqualToString:@"晴"] && [status isEqualToString:@"moon"]) {
+        return [UIImage imageNamed:@"晴天-夜"];
+    }
+    else if ([condition isEqualToString:@"晴"] && [status isEqualToString:@"sun"] && ([temp integerValue] >= 30)) {
+        return [UIImage imageNamed:@"高温"];
+    }
+    else if (([condition isEqualToString:@"雷雨"]
+               || [condition isEqualToString:@"雷阵雨"]) && [status isEqualToString:@"sun"]) {
+        return [UIImage imageNamed:@"雷雨-日"];
+    }
+    else if (([condition isEqualToString:@"雷雨"]
+               || [condition isEqualToString:@"雷阵雨"]) && [status isEqualToString:@"moon"]) {
+        return [UIImage imageNamed:@"雷雨-夜"];
+    }
+    else if (([condition containsString:@"雨"] && [status isEqualToString:@"sun"])) {
+        return [UIImage imageNamed:@"小雨-日"];
+    }
+    else if (([condition containsString:@"雨"] && [status isEqualToString:@"moon"])) {
+        return [UIImage imageNamed:@"小雨-夜"];
+    }
+    else if (([condition isEqualToString:@"多云"] || [condition isEqualToString:@"阴"])&& [status isEqualToString:@"sun"]) {
+        return [UIImage imageNamed:@"多云-日"];
+    }
+    else if (([condition isEqualToString:@"多云"] || [condition isEqualToString:@"阴"])&& [status isEqualToString:@"moon"]) {
+        return [UIImage imageNamed:@"多云-夜"];
+    }
+    else if ([condition containsString:@"霾"] || [condition containsString:@"雾"] ) {
+        return [UIImage imageNamed:@"雾霾"];
+    }
+    else if ([condition isEqualToString:@"雨夹雪"] && [status isEqualToString:@"sun"]) {
+        return [UIImage imageNamed:@"雨夹雪-日"];
+    }
+    else if ([condition isEqualToString:@"雨夹雪"] && [status isEqualToString:@"moon"]) {
+        return [UIImage imageNamed:@"雨夹雪-夜"];
+    }
+    else if ([condition containsString:@"雪"] && [status isEqualToString:@"sun"]) {
+        return [UIImage imageNamed:@"下雪-日"];
+    }
+    else if ([condition containsString:@"雪"] && [status isEqualToString:@"moon"]) {
+        return [UIImage imageNamed:@"下雪-夜"];
+    }
+    return [UIImage imageNamed:@"渐变"];
 }
 
 /**

@@ -58,7 +58,6 @@
         self.qlty            = [aDecoder decodeObjectForKey:@"qlty"];
         self.pm25            = [aDecoder decodeObjectForKey:@"pm25"];
         self.weatherImage    = [aDecoder decodeObjectForKey:@"weatherImage"];
-
     }
 
     return self;
@@ -82,7 +81,6 @@
     [aCoder encodeObject:self.qlty forKey:@"qlty"];
     [aCoder encodeObject:self.pm25 forKey:@"pm25"];
     [aCoder encodeObject:self.weatherImage forKey:@"weatherImage"];
-
 }
 
 

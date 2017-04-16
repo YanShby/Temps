@@ -25,8 +25,6 @@
 @property (nonatomic, copy) NSString *sunrise;
 /**日落时间*/
 @property (nonatomic, copy) NSString *sunset;
-/**天气状况图标*/
-@property (nonatomic, copy) NSString *icon;
 /**降水概率*/
 @property (nonatomic, copy) NSString *pop;
 /**相对湿度*/
@@ -45,6 +43,8 @@
 @property (nonatomic, assign) BOOL here;
 /**天气背景*/
 @property (nonatomic, strong) UIImage *weatherImage;
+/**天气icon*/
+@property (nonatomic, strong) UIImage *icon;
 
 - (instancetype)initWithDict:(NSDictionary *)dict;
 

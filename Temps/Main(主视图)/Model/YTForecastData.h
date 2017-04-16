@@ -13,7 +13,7 @@
 //星期
 @property (strong, nonatomic) NSString *dayOfWeek;
 //天气状况
-@property (strong, nonatomic) NSString *weatherIcon;
+@property (strong, nonatomic) UIImage *weatherIcon;
 //最高  （H 20° L 10°）
 @property (strong, nonatomic) NSString *high;
 //最低
