@@ -123,6 +123,10 @@
     
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied)
     {
+        if(self.weathers.count == 0)
+        {
+            [self tap:nil];
+        }
         [self updateData];
         return;
     }

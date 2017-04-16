@@ -97,7 +97,7 @@
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    _backViewColor = [UIColor colorWithWhite:1.0 alpha:0.3];
+    _backViewColor = [UIColor colorWithRed:111.0/255.0 green:113.0/255.0 blue:121.0/255.0 alpha:0.74];
    
     [self configureDefaultState];
   
