@@ -12,6 +12,7 @@
 #import "YTWeatherData.h"
 #import "YTForecastData.h"
 #import "YTImageView.h"
+#import "CBAutoScrollLabel.h"
 
 @interface YTFoldTableViewCell () <UITableViewDataSource, UITableViewDelegate>
 
@@ -55,6 +56,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *pm25;
 //降水概率
 @property (weak, nonatomic) IBOutlet UILabel *pop;
+@property (weak, nonatomic) IBOutlet CBAutoScrollLabel *tipsLabel;
 
 /**未来五天的天气状况*/
 @property (nonatomic, strong) NSArray *forecastWeather;
@@ -253,11 +255,20 @@
     self.pm25.text = [NSString stringWithFormat:@"PM2.5 : %@",weatherData.pm25];
     self.fl.text = [NSString stringWithFormat:@"体感温度 : %@℃",weatherData.fl];
     self.forecastWeather = weatherData.forecastWeather;
-
+    self.tipsLabel.attributedText = [self setAttributedString:weatherData.suggestion];
     [self.forecastTableView reloadData];
 }
 
-
+- (NSAttributedString *)setAttributedString:(NSString *)attrString
+{
+    NSDictionary *dict = @{
+                           NSFontAttributeName              :   [UIFont fontWithName:@"Avenir Next" size:13],
+                           NSForegroundColorAttributeName   :   [UIColor whiteColor]
+                            };
+    NSAttributedString *string = [[NSAttributedString alloc] initWithString:attrString attributes:dict];
+    
+    return string;
+}
 
 #pragma mark - 动画<开/关>
 - (void)openAnimation:(CompletionHandler)completion {

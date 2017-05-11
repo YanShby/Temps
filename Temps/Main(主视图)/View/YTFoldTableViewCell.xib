@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -33,13 +33,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="280" height="180"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGE-pL-j3O">
-                                        <rect key="frame" x="80" y="28" width="63" height="86.5"/>
+                                        <rect key="frame" x="80" y="27" width="63" height="86.5"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="63"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9vo-3o-mnL">
-                                        <rect key="frame" x="143" y="57" width="15" height="19.5"/>
+                                        <rect key="frame" x="143" y="56" width="15" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                         <color key="textColor" red="0.28686151649746194" green="0.28686151649746194" blue="0.28686151649746194" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -84,7 +84,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hec-cU-siz">
-                                        <rect key="frame" x="143" y="79.5" width="11.5" height="14.5"/>
+                                        <rect key="frame" x="143" y="78.5" width="11.5" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -176,7 +176,7 @@
                             <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dmM-QT-hmv" userLabel="第一个折叠容器" customClass="YTRotatedView">
                                 <rect key="frame" x="0.0" y="50" width="280" height="175"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JFU-yd-AS0" userLabel="未来三天天气状况">
+                                    <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JFU-yd-AS0" userLabel="未来三天天气状况">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="175"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableView>
@@ -291,19 +291,19 @@
                             <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QpI-Q7-QbQ" userLabel="第三个折叠容器" customClass="YTRotatedView">
                                 <rect key="frame" x="0.0" y="375" width="280" height="35"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天气变冷，适当添衣，注意保暖哦。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4M4-et-mIn">
-                                        <rect key="frame" x="44.5" y="9.5" width="192" height="16.5"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="12"/>
-                                        <color key="textColor" red="0.96383056494861474" green="0.97337344182929408" blue="0.97337344182929408" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8uu-0B-FS7" customClass="CBAutoScrollLabel">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="35"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="0.73999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="2Is-7H-Byz"/>
-                                    <constraint firstItem="4M4-et-mIn" firstAttribute="centerY" secondItem="QpI-Q7-QbQ" secondAttribute="centerY" id="HYd-rb-WYQ"/>
+                                    <constraint firstItem="8uu-0B-FS7" firstAttribute="leading" secondItem="QpI-Q7-QbQ" secondAttribute="leading" id="2d3-Ag-Szz"/>
+                                    <constraint firstItem="8uu-0B-FS7" firstAttribute="top" secondItem="QpI-Q7-QbQ" secondAttribute="top" id="Aau-Fx-5By"/>
+                                    <constraint firstAttribute="bottom" secondItem="8uu-0B-FS7" secondAttribute="bottom" id="MB9-U1-Qvo"/>
                                     <constraint firstAttribute="width" constant="280" id="PMf-RC-vw9"/>
-                                    <constraint firstItem="4M4-et-mIn" firstAttribute="centerX" secondItem="QpI-Q7-QbQ" secondAttribute="centerX" id="a7m-Yn-xTM"/>
+                                    <constraint firstAttribute="trailing" secondItem="8uu-0B-FS7" secondAttribute="trailing" id="lef-IJ-yBu"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -360,6 +360,7 @@
                 <outlet property="sunrise" destination="3BY-5d-Dhp" id="nRr-f2-ifP"/>
                 <outlet property="sunset" destination="Mj2-x3-c16" id="hme-5m-wVg"/>
                 <outlet property="temperature" destination="GGE-pL-j3O" id="ePQ-yu-jAd"/>
+                <outlet property="tipsLabel" destination="8uu-0B-FS7" id="EJb-vl-Jsy"/>
                 <outlet property="weather" destination="hec-cU-siz" id="7Y8-3p-4yZ"/>
                 <outlet property="weatherIcon" destination="Jg7-xb-FCM" id="EN2-9Y-efZ"/>
                 <outlet property="weatherImage" destination="hEa-if-47V" id="R6A-mA-6Pm"/>

@@ -45,6 +45,9 @@
 @property (nonatomic, strong) UIImage *weatherImage;
 /**天气icon*/
 @property (nonatomic, strong) UIImage *icon;
+/**穿衣建议*/
+@property (nonatomic, strong) NSString *suggestion;
+
 
 - (instancetype)initWithDict:(NSDictionary *)dict;
 

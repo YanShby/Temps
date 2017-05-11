@@ -162,8 +162,8 @@
     NSDictionary *basic               = [mainDict objectForKey:@"basic"];
     NSArray *forecast                 = [mainDict objectForKey:@"daily_forecast"];
     NSDictionary *now                 = [mainDict objectForKey:@"now"];
-    NSDictionary *city                 = [[mainDict objectForKey:@"aqi"] objectForKey:@"city"];
-
+    NSDictionary *city                = [[mainDict objectForKey:@"aqi"] objectForKey:@"city"];
+    NSDictionary *suggestion          = [mainDict objectForKey:@"suggestion"];
     //把解析出来的信息放入这个字典
     NSMutableDictionary *weatherDict  = [NSMutableDictionary dictionary];
 
@@ -213,6 +213,8 @@
 
         [newForecast addObject:forecastDict];
     }
+    
+    NSString *clothes = [[suggestion objectForKey:@"drsg"] objectForKey:@"txt"];
 
     [weatherDict setObject:location forKey:@"location"];
     [weatherDict setObject:weather forKey:@"weather"];
@@ -230,7 +232,8 @@
     [weatherDict setObject:qlty forKey:@"qlty"];
     [weatherDict setObject:pm25 forKey:@"pm25"];
     [weatherDict setObject:weatherImage forKey:@"weatherImage"];
-
+    [weatherDict setObject:clothes forKey:@"suggestion"];
+    
     YTWeatherData *weatherData        = [[YTWeatherData alloc] initWithDict:weatherDict];
 
     return weatherData;
