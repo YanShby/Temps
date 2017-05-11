@@ -154,9 +154,8 @@
 - (void)initRotateTableView {
     
     self.rotateTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
+    self.rotateTableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0);
     [self.rotateTableView registerNib:[UINib nibWithNibName:NSStringFromClass([YTFoldTableViewCell class]) bundle:nil] forCellReuseIdentifier:@"cell"];
-    
 }
 
 //初始化BackView
